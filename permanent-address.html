@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Details - Goodwill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'goodwill-blue': '#2563eb',
+                        'goodwill-dark-blue': '#1d4ed8',
+                        'colorful-primary': '#ff6b6b',
+                        'colorful-secondary': '#4ecdc4',
+                        'colorful-accent': '#45b7d1',
+                        'colorful-gradient-start': '#667eea',
+                        'colorful-gradient-end': '#764ba2',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        progressSlide: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        progressSlideFrom50To70: {
+                            '0%': { width: '50%' },
+                            '100%': { width: '70%' }
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' }
+                        }
+                    },
+                    animation: {
+                        slideUp: 'slideUp 0.6s ease-out forwards',
+                        slideInLeft: 'slideInLeft 0.4s ease-out forwards',
+                        progressSlide: 'progressSlide 1.2s ease-out forwards',
+                        progressSlideFrom50To70: 'progressSlideFrom50To70 1.2s ease-out forwards',
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans overflow-hidden transition-all duration-500" id="body">
+    <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500" id="mainBg">
+        <!-- Mobile Container -->
+        <div id="mobileContainer" class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
+            <!-- Header -->
+            <div class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500" id="header">
+                <!-- Menu Icon -->
+                <button class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                
+                <!-- Title -->
+                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Address Details</h1>
+                
+                <!-- Settings Icon -->
+                <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 h-1 bg-gray-200 rounded-full relative overflow-hidden">
+                        <div class="h-full bg-blue-500 rounded-full w-[50%]" id="progressBar1"></div>
+                    </div>
+                    <div class="flex-1 h-1 bg-gray-200 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-gray-200 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-gray-200 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-gray-200 rounded-full transition-all duration-500"></div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="bg-white px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500" id="formContent">
+                <div class="space-y-6">
+                    <!-- Title Section -->
+                    <div id="titleSection" class="opacity-0 transform translate-x-[-30px]">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-3 transition-all duration-500" id="title1">Enter your address</h2>
+                        <p class="text-gray-600 text-sm leading-relaxed transition-all duration-500" id="subtitle">
+                            Provide your accurate address for smooth and seamless service.
+                        </p>
+                    </div>
+
+                    <!-- Form Fields -->
+                    <div class="space-y-4">
+                        <!-- Address Line 1 -->
+                        <div id="addressLine1Field" class="opacity-0 transform translate-x-[-30px]">
+                            <input 
+                                id="addressLine1Input"
+                                type="text" 
+                                value=""
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-gray-50 text-gray-900 font-medium transition-colors duration-300"
+                                placeholder="Address Line 1 : Door no / Floor"
+                            >
+                        </div>
+
+                        <!-- Address Line 2 -->
+                        <div id="addressLine2Field" class="opacity-0 transform translate-x-[-30px]">
+                            <input 
+                                id="addressLine2Input"
+                                type="text" 
+                                value=""
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-gray-50 text-gray-900 font-medium transition-colors duration-300"
+                                placeholder="Address Line 2 : Apartment / Street name"
+                            >
+                        </div>
+
+                        <!-- City Section -->
+                        <div id="citySection" class="opacity-0 transform translate-x-[-30px]">
+                            <h3 class="text-sm font-medium text-gray-700 mb-2 transition-all duration-500" id="cityLabel">Your City</h3>
+                            <input 
+                                id="cityInput"
+                                type="text" 
+                                value=""
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-gray-50 text-gray-900 font-medium transition-colors duration-300"
+                                placeholder="City / Place"
+                            >
+                        </div>
+
+                        <!-- State Section -->
+                        <div id="stateSection" class="opacity-0 transform translate-x-[-30px]">
+                            <h3 class="text-sm font-medium text-gray-700 mb-2 transition-all duration-500" id="stateLabel">Your State</h3>
+                            <select 
+                                id="stateSelect"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-gray-50 text-gray-900 font-medium transition-colors duration-300"
+                            >
+                                <option value="">State</option>
+                                <option value="andhra-pradesh">Andhra Pradesh</option>
+                                <option value="arunachal-pradesh">Arunachal Pradesh</option>
+                                <option value="assam">Assam</option>
+                                <option value="bihar">Bihar</option>
+                                <option value="chhattisgarh">Chhattisgarh</option>
+                                <option value="goa">Goa</option>
+                                <option value="gujarat">Gujarat</option>
+                                <option value="haryana">Haryana</option>
+                                <option value="himachal-pradesh">Himachal Pradesh</option>
+                                <option value="jharkhand">Jharkhand</option>
+                                <option value="karnataka">Karnataka</option>
+                                <option value="kerala">Kerala</option>
+                                <option value="madhya-pradesh">Madhya Pradesh</option>
+                                <option value="maharashtra">Maharashtra</option>
+                                <option value="manipur">Manipur</option>
+                                <option value="meghalaya">Meghalaya</option>
+                                <option value="mizoram">Mizoram</option>
+                                <option value="nagaland">Nagaland</option>
+                                <option value="odisha">Odisha</option>
+                                <option value="punjab">Punjab</option>
+                                <option value="rajasthan">Rajasthan</option>
+                                <option value="sikkim">Sikkim</option>
+                                <option value="tamil-nadu">Tamil Nadu</option>
+                                <option value="telangana">Telangana</option>
+                                <option value="tripura">Tripura</option>
+                                <option value="uttar-pradesh">Uttar Pradesh</option>
+                                <option value="uttarakhand">Uttarakhand</option>
+                                <option value="west-bengal">West Bengal</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="chandigarh">Chandigarh</option>
+                                <option value="puducherry">Puducherry</option>
+                            </select>
+                        </div>
+
+                        <!-- Pincode Section -->
+                        <div id="pincodeSection" class="opacity-0 transform translate-x-[-30px]">
+                            <h3 class="text-sm font-medium text-gray-700 mb-2 transition-all duration-500" id="pincodeLabel">Pincode</h3>
+                            <input 
+                                id="pincodeInput"
+                                type="text" 
+                                value=""
+                                maxlength="6"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-gray-50 text-gray-900 font-medium transition-colors duration-300"
+                                placeholder="Pincode"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                            >
+                        </div>
+
+                        <!-- Communication Address Checkbox -->
+                        <div id="checkboxSection" class="opacity-0 transform translate-x-[-30px]">
+                            <label class="flex items-center justify-between cursor-pointer">
+                                <span class="text-sm text-gray-700 transition-all duration-500" id="checkboxLabel">Use this as Communication Address</span>
+                                <div class="relative">
+                                    <input 
+                                        type="checkbox" 
+                                        id="communicationCheckbox"
+                                        class="sr-only"
+                                        checked
+                                    >
+                                    <div class="toggle-bg w-11 h-6 bg-blue-500 rounded-full shadow-inner transition-colors duration-300"></div>
+                                    <div class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow top-1 left-1 transition-transform duration-300 transform translate-x-5"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Buttons -->
+            <div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200 px-6 py-4 transition-all duration-500" id="buttonContainer">
+                <div class="flex space-x-3">
+                    <!-- Back Button -->
+                    <button 
+                        id="backBtn"
+                        class="w-12 h-12 bg-goodwill-blue text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center hover:bg-goodwill-dark-blue"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Continue Button -->
+                    <button 
+                        id="continueBtn"
+                        class="flex-1 bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-not-allowed"
+                        disabled
+                    >
+                        PROCEED TO E-SIGN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme management (same as other pages)
+        let currentTheme = 'default';
+        
+        const themes = {
+            default: {
+                body: 'bg-gray-50',
+                mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-200',
+                headerTitle: 'text-gray-800',
+                formContent: 'bg-white',
+                title1: 'text-gray-800',
+                subtitle: 'text-gray-600',
+                cityLabel: 'text-gray-700',
+                stateLabel: 'text-gray-700',
+                pincodeLabel: 'text-gray-700',
+                checkboxLabel: 'text-gray-700',
+                buttonContainer: 'bg-white border-gray-200',
+                inputs: 'bg-gray-50 text-gray-900 border-gray-300',
+                toggleBg: 'bg-blue-500',
+                toggleDot: 'bg-white'
+            },
+            night: {
+                body: 'bg-gray-900',
+                mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
+                mobileContainer: 'bg-gray-800 shadow-2xl',
+                header: 'bg-gray-800 border-gray-600',
+                headerTitle: 'text-gray-100',
+                formContent: 'bg-gray-800',
+                title1: 'text-gray-100',
+                subtitle: 'text-gray-300',
+                cityLabel: 'text-gray-200',
+                stateLabel: 'text-gray-200',
+                pincodeLabel: 'text-gray-200',
+                checkboxLabel: 'text-gray-200',
+                buttonContainer: 'bg-gray-800 border-gray-600',
+                inputs: 'bg-gray-700 text-white border-gray-500',
+                toggleBg: 'bg-purple-500',
+                toggleDot: 'bg-white'
+            },
+            white: {
+                body: 'bg-white',
+                mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-300',
+                headerTitle: 'text-gray-700',
+                formContent: 'bg-white',
+                title1: 'text-gray-700',
+                subtitle: 'text-gray-600',
+                cityLabel: 'text-gray-600',
+                stateLabel: 'text-gray-600',
+                pincodeLabel: 'text-gray-600',
+                checkboxLabel: 'text-gray-600',
+                buttonContainer: 'bg-white border-gray-300',
+                inputs: 'bg-white text-gray-800 border-gray-300',
+                toggleBg: 'bg-gray-400',
+                toggleDot: 'bg-white'
+            },
+            colorful: {
+                body: 'bg-gradient-to-br from-pink-100 to-purple-100',
+                mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
+                mobileContainer: 'bg-white',
+                header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                headerTitle: 'text-colorful-primary',
+                formContent: 'bg-gradient-to-b from-white to-purple-50',
+                title1: 'text-colorful-primary',
+                subtitle: 'text-purple-600',
+                cityLabel: 'text-colorful-primary',
+                stateLabel: 'text-colorful-primary',
+                pincodeLabel: 'text-colorful-primary',
+                checkboxLabel: 'text-purple-700',
+                buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                inputs: 'bg-purple-50 text-purple-900 border-purple-300',
+                toggleBg: 'bg-gradient-to-r from-colorful-primary to-colorful-secondary',
+                toggleDot: 'bg-white'
+            }
+        };
+        
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            
+            // Apply theme classes
+            document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
+            document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
+            document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
+            document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
+            document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
+            document.getElementById('formContent').className = `${theme.formContent} px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500`;
+            document.getElementById('title1').className = `text-xl font-semibold ${theme.title1} mb-3 transition-all duration-500`;
+            document.getElementById('subtitle').className = `${theme.subtitle} text-sm leading-relaxed transition-all duration-500`;
+            document.getElementById('cityLabel').className = `text-sm font-medium ${theme.cityLabel} mb-2 transition-all duration-500`;
+            document.getElementById('stateLabel').className = `text-sm font-medium ${theme.stateLabel} mb-2 transition-all duration-500`;
+            document.getElementById('pincodeLabel').className = `text-sm font-medium ${theme.pincodeLabel} mb-2 transition-all duration-500`;
+            document.getElementById('checkboxLabel').className = `text-sm ${theme.checkboxLabel} transition-all duration-500`;
+            document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
+            
+            // Apply input styles
+            const inputs = ['addressLine1Input', 'addressLine2Input', 'cityInput', 'stateSelect', 'pincodeInput'];
+            inputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.className = `w-full px-4 py-3 border rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none ${theme.inputs} font-medium transition-colors duration-300`;
+                }
+            });
+            
+            // Apply toggle switch styles
+            const toggleBg = document.querySelector('.toggle-bg');
+            const toggleDot = document.querySelector('.toggle-dot');
+            if (toggleBg && toggleDot) {
+                toggleBg.className = `toggle-bg w-11 h-6 ${theme.toggleBg} rounded-full shadow-inner transition-colors duration-300`;
+                toggleDot.className = `toggle-dot absolute w-4 h-4 ${theme.toggleDot} rounded-full shadow top-1 left-1 transition-transform duration-300 transform translate-x-5`;
+            }
+        }
+        
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const themeOrder = ['default', 'night', 'white', 'colorful'];
+            const currentIndex = themeOrder.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themeOrder.length;
+            currentTheme = themeOrder[nextIndex];
+            
+            applyTheme(currentTheme);
+            
+            // Show theme name briefly
+            const themeNames = {
+                'default': 'Default Mode',
+                'night': 'Night Mode',
+                'white': 'White Mode',
+                'colorful': 'Colorful Mode'
+            };
+            
+            // Create temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+            notification.textContent = themeNames[currentTheme];
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 1500);
+        });
+        
+        // Page load animation
+        window.addEventListener('load', function() {
+            const mobileContainer = document.getElementById('mobileContainer');
+            const progressBar1 = document.getElementById('progressBar1');
+            
+            setTimeout(() => {
+                mobileContainer.classList.remove('translate-y-full', 'opacity-0');
+                mobileContainer.classList.add('animate-slideUp');
+               
+               setTimeout(() => {
+                   document.body.classList.remove('overflow-hidden');
+                   
+                   // Animate progress bar from 50% to 70%
+                   setTimeout(() => {
+                       progressBar1.classList.add('animate-progressSlideFrom50To70');
+                   }, 200);
+                   
+                   animateFields();
+               }, 600);
+            }, 100);
+        });
+      
+        function animateFields() {
+            const fields = [
+                'titleSection',
+                'addressLine1Field',
+                'addressLine2Field',
+                'citySection',
+                'stateSection',
+                'pincodeSection',
+                'checkboxSection'
+            ];
+            
+            fields.forEach((fieldId, index) => {
+                setTimeout(() => {
+                    const field = document.getElementById(fieldId);
+                    field.classList.remove('opacity-0', 'translate-x-[-30px]');
+                    field.classList.add('animate-slideInLeft');
+                }, 100 + (index * 100));
+            });
+        }
+
+        // Form functionality
+        const addressLine1Input = document.getElementById('addressLine1Input');
+        const addressLine2Input = document.getElementById('addressLine2Input');
+        const cityInput = document.getElementById('cityInput');
+        const stateSelect = document.getElementById('stateSelect');
+        const pincodeInput = document.getElementById('pincodeInput');
+        const communicationCheckbox = document.getElementById('communicationCheckbox');
+        const continueBtn = document.getElementById('continueBtn');
+        const backBtn = document.getElementById('backBtn');
+        
+        // Pincode validation pattern (6 digits)
+        const pincodePattern = /^[0-9]{6}$/;
+        
+        // Function to validate pincode
+        function validatePincode(pincode) {
+            return pincodePattern.test(pincode);
+        }
+        
+        // Function to check form validity and update button state
+        function checkFormValidity() {
+            const isAddressLine1Valid = addressLine1Input.value.trim() !== '';
+            const isAddressLine2Valid = addressLine2Input.value.trim() !== '';
+            const isCityValid = cityInput.value.trim() !== '';
+            const isStateValid = stateSelect.value !== '';
+            const isPincodeValid = validatePincode(pincodeInput.value);
+            
+            const isFormValid = isAddressLine1Valid && isAddressLine2Valid && isCityValid && isStateValid && isPincodeValid;
+            
+            if (isFormValid) {
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed', 'bg-gray-600', 'text-gray-400');
+                
+                if (currentTheme === 'night') {
+                    continueBtn.classList.add('bg-purple-600', 'hover:bg-purple-700', 'text-white', 'cursor-pointer');
+                } else if (currentTheme === 'colorful') {
+                    continueBtn.classList.add('bg-gradient-to-r', 'from-colorful-primary', 'to-colorful-secondary', 'hover:from-colorful-secondary', 'hover:to-colorful-primary', 'text-white', 'cursor-pointer');
+                } else {
+                    continueBtn.classList.add('bg-goodwill-blue', 'hover:bg-goodwill-dark-blue', 'text-white', 'cursor-pointer');
+                }
+            } else {
+                continueBtn.disabled = true;
+                continueBtn.classList.remove('bg-goodwill-blue', 'hover:bg-goodwill-dark-blue', 'text-white', 'cursor-pointer', 'bg-purple-600', 'hover:bg-purple-700', 'bg-gradient-to-r', 'from-colorful-primary', 'to-colorful-secondary', 'hover:from-colorful-secondary', 'hover:to-colorful-primary');
+                
+                if (currentTheme === 'night') {
+                    continueBtn.classList.add('bg-gray-600', 'text-gray-400', 'cursor-not-allowed');
+                } else {
+                    continueBtn.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                }
+            }
+        }
+        
+        // Pincode input event listener
+        pincodeInput.addEventListener('input', function(e) {
+            // Only allow numbers
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            
+            const pincodeValue = e.target.value;
+            const isValid = validatePincode(pincodeValue);
+            
+            if (isValid) {
+                // Add success styling to pincode input
+                pincodeInput.classList.remove('border-gray-300', 'border-gray-500');
+                if (currentTheme === 'night') {
+                    pincodeInput.classList.add('border-green-400', 'ring-1', 'ring-green-400');
+                } else {
+                    pincodeInput.classList.add('border-green-500', 'ring-1', 'ring-green-500');
+                }
+            } else {
+                // Remove success styling from pincode input
+                pincodeInput.classList.remove('border-green-500', 'ring-1', 'ring-green-500', 'border-green-400', 'ring-green-400');
+                if (currentTheme === 'night') {
+                    pincodeInput.classList.add('border-gray-500');
+                } else {
+                    pincodeInput.classList.add('border-gray-300');
+                }
+            }
+            
+            checkFormValidity();
+        });
+        
+        // Add event listeners to all form inputs
+        [addressLine1Input, addressLine2Input, cityInput, stateSelect].forEach(input => {
+            input.addEventListener('input', checkFormValidity);
+            input.addEventListener('change', checkFormValidity);
+        });
+        
+        // Toggle switch functionality
+        let toggleBg, toggleDot;
+        
+        function initializeToggle() {
+            toggleBg = document.querySelector('.toggle-bg');
+            toggleDot = document.querySelector('.toggle-dot');
+        }
+        
+        function updateToggleState() {
+            if (!toggleBg || !toggleDot) {
+                initializeToggle();
+            }
+            
+            if (communicationCheckbox.checked) {
+                toggleDot.classList.add('translate-x-5');
+                toggleDot.classList.remove('translate-x-0');
+                if (currentTheme === 'night') {
+                    toggleBg.classList.remove('bg-gray-600');
+                    toggleBg.classList.add('bg-purple-500');
+                } else if (currentTheme === 'white') {
+                    toggleBg.classList.remove('bg-gray-300');
+                    toggleBg.classList.add('bg-gray-400');
+                } else if (currentTheme === 'colorful') {
+                    toggleBg.classList.remove('bg-gray-300');
+                    toggleBg.classList.add('bg-gradient-to-r', 'from-colorful-primary', 'to-colorful-secondary');
+                } else {
+                    toggleBg.classList.remove('bg-gray-300');
+                    toggleBg.classList.add('bg-blue-500');
+                }
+            } else {
+                toggleDot.classList.remove('translate-x-5');
+                toggleDot.classList.add('translate-x-0');
+                toggleBg.classList.remove('bg-blue-500', 'bg-purple-500', 'bg-gray-400', 'bg-gradient-to-r', 'from-colorful-primary', 'to-colorful-secondary');
+                if (currentTheme === 'night') {
+                    toggleBg.classList.add('bg-gray-600');
+                } else {
+                    toggleBg.classList.add('bg-gray-300');
+                }
+            }
+        }
+        
+        // Initialize toggle state
+        setTimeout(updateToggleState, 100);
+        
+        // Toggle switch click handler
+        document.querySelector('#checkboxSection label').addEventListener('click', function(e) {
+            if (e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                communicationCheckbox.checked = !communicationCheckbox.checked;
+                updateToggleState();
+            }
+        });
+        
+        communicationCheckbox.addEventListener('change', updateToggleState);
+        
+        // Continue button click handler
+        continueBtn.addEventListener('click', function() {
+            if (!continueBtn.disabled) {
+                const formData = {
+                    addressLine1: addressLine1Input.value,
+                    addressLine2: addressLine2Input.value,
+                    city: cityInput.value,
+                    state: stateSelect.value,
+                    pincode: pincodeInput.value,
+                    useCommunicationAddress: communicationCheckbox.checked
+                };
+                
+                alert('Address details submitted successfully!\n' + JSON.stringify(formData, null, 2));
+            }
+        });
+        
+        // Back button click handler
+        backBtn.addEventListener('click', function() {
+            window.location.href = 'email.html';
+        });
+    </script>
+</body>
+</html>

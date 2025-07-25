@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annual Income - Goodwill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'goodwill-blue': '#2563eb',
+                        'goodwill-dark-blue': '#1d4ed8',
+                        'colorful-primary': '#ff6b6b',
+                        'colorful-secondary': '#4ecdc4',
+                        'colorful-accent': '#45b7d1',
+                        'colorful-gradient-start': '#667eea',
+                        'colorful-gradient-end': '#764ba2',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        progressSlide: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        progressSlideComplete: {
+                            '0%': { width: '90%' },
+                            '100%': { width: '100%' }
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' }
+                        }
+                    },
+                    animation: {
+                        slideUp: 'slideUp 0.6s ease-out forwards',
+                        slideInLeft: 'slideInLeft 0.4s ease-out forwards',
+                        progressSlide: 'progressSlide 1.2s ease-out forwards',
+                        progressSlideComplete: 'progressSlideComplete 1.2s ease-out forwards',
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans overflow-hidden transition-all duration-500" id="body">
+    <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500" id="mainBg">
+        <!-- Mobile Container -->
+        <div id="mobileContainer" class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
+            <!-- Header -->
+            <div class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500" id="header">
+                <!-- Menu Icon -->
+                <button class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                
+                <!-- Title -->
+                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Annual Income</h1>
+                
+                <!-- Settings Icon -->
+                <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full relative overflow-hidden">
+                        <div class="h-full bg-blue-500 rounded-full w-[90%]" id="progressBar1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="bg-white px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500" id="formContent">
+                <div class="space-y-6">
+                    <!-- Title Section -->
+                    <div id="titleSection" class="opacity-0 transform translate-x-[-30px]">
+                        <h2 class="text-lg font-medium text-gray-800 mb-2 transition-all duration-500" id="title1">Annual Income</h2>
+                        <p class="text-gray-600 text-sm leading-relaxed transition-all duration-500" id="subtitle">
+                            Provide your accurate address for smooth and seamless service.
+                        </p>
+                    </div>
+
+                    <!-- Income Section -->
+                    <div id="incomeSection" class="opacity-0 transform translate-x-[-30px]">
+                        <div class="space-y-3">
+                            <!-- Below 1 Lakh Option -->
+                            <button 
+                                id="below1LakhBtn"
+                                class="w-full py-3 px-4 bg-goodwill-blue text-white font-medium rounded-lg transition-all duration-300 hover:bg-goodwill-dark-blue"
+                                data-income="below-1-lakh"
+                            >
+                                Below 1 Lakh
+                            </button>
+                            
+                            <!-- 1 Lakh to 5 Lakhs Option -->
+                            <button 
+                                id="oneToFiveLakhsBtn"
+                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
+                                data-income="1-to-5-lakhs"
+                            >
+                                1 Lakh to 5 Lakhs
+                            </button>
+                            
+                            <!-- 5 Lakhs to 10 Lakhs Option -->
+                            <button 
+                                id="fiveToTenLakhsBtn"
+                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
+                                data-income="5-to-10-lakhs"
+                            >
+                                5 Lakhs to 10 Lakhs
+                            </button>
+                            
+                            <!-- 10 Lakhs to 25 Lakhs Option -->
+                            <button 
+                                id="tenToTwentyFiveLakhsBtn"
+                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
+                                data-income="10-to-25-lakhs"
+                            >
+                                10 Lakhs to 25 Lakhs
+                            </button>
+                            
+                            <!-- Above 25 Lakhs Option -->
+                            <button 
+                                id="above25LakhsBtn"
+                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
+                                data-income="above-25-lakhs"
+                            >
+                                Above 25 Lakhs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Buttons -->
+            <div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200 px-6 py-4 transition-all duration-500" id="buttonContainer">
+                <div class="flex space-x-3">
+                    <!-- Back Button -->
+                    <button 
+                        id="backBtn"
+                        class="w-12 h-12 bg-goodwill-blue text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center hover:bg-goodwill-dark-blue"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Continue Button -->
+                    <button 
+                        id="continueBtn"
+                        class="flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue"
+                    >
+                        PROCEED TO E-SIGN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme management (same as other pages)
+        let currentTheme = 'default';
+        
+        const themes = {
+            default: {
+                body: 'bg-gray-50',
+                mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-200',
+                headerTitle: 'text-gray-800',
+                formContent: 'bg-white',
+                title1: 'text-gray-800',
+                subtitle: 'text-gray-600',
+                buttonContainer: 'bg-white border-gray-200',
+                selectedButton: 'bg-goodwill-blue text-white hover:bg-goodwill-dark-blue',
+                unselectedButton: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            },
+            night: {
+                body: 'bg-gray-900',
+                mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
+                mobileContainer: 'bg-gray-800 shadow-2xl',
+                header: 'bg-gray-800 border-gray-600',
+                headerTitle: 'text-gray-100',
+                formContent: 'bg-gray-800',
+                title1: 'text-gray-100',
+                subtitle: 'text-gray-300',
+                buttonContainer: 'bg-gray-800 border-gray-600',
+                selectedButton: 'bg-purple-600 text-white hover:bg-purple-700',
+                unselectedButton: 'bg-gray-700 text-gray-200 hover:bg-gray-600'
+            },
+            white: {
+                body: 'bg-white',
+                mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-300',
+                headerTitle: 'text-gray-700',
+                formContent: 'bg-white',
+                title1: 'text-gray-700',
+                subtitle: 'text-gray-600',
+                buttonContainer: 'bg-white border-gray-300',
+                selectedButton: 'bg-gray-600 text-white hover:bg-gray-700',
+                unselectedButton: 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            },
+            colorful: {
+                body: 'bg-gradient-to-br from-pink-100 to-purple-100',
+                mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
+                mobileContainer: 'bg-white',
+                header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                headerTitle: 'text-colorful-primary',
+                formContent: 'bg-gradient-to-b from-white to-purple-50',
+                title1: 'text-colorful-primary',
+                subtitle: 'text-purple-600',
+                buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                selectedButton: 'bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white hover:from-colorful-secondary hover:to-colorful-primary',
+                unselectedButton: 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+            }
+        };
+        
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            
+            // Apply theme classes
+            document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
+            document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
+            document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
+            document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
+            document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
+            document.getElementById('formContent').className = `${theme.formContent} px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500`;
+            document.getElementById('title1').className = `text-lg font-medium ${theme.title1} mb-2 transition-all duration-500`;
+            document.getElementById('subtitle').className = `${theme.subtitle} text-sm leading-relaxed transition-all duration-500`;
+            document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
+            
+            // Update button styles based on current selections
+            updateButtonStyles();
+        }
+        
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const themeOrder = ['default', 'night', 'white', 'colorful'];
+            const currentIndex = themeOrder.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themeOrder.length;
+            currentTheme = themeOrder[nextIndex];
+            
+            applyTheme(currentTheme);
+            
+            // Show theme name briefly
+            const themeNames = {
+                'default': 'Default Mode',
+                'night': 'Night Mode',
+                'white': 'White Mode',
+                'colorful': 'Colorful Mode'
+            };
+            
+            // Create temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+            notification.textContent = themeNames[currentTheme];
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 1500);
+        });
+        
+        // Page load animation
+        window.addEventListener('load', function() {
+            const mobileContainer = document.getElementById('mobileContainer');
+            const progressBar1 = document.getElementById('progressBar1');
+            
+            setTimeout(() => {
+                mobileContainer.classList.remove('translate-y-full', 'opacity-0');
+                mobileContainer.classList.add('animate-slideUp');
+               
+               setTimeout(() => {
+                   document.body.classList.remove('overflow-hidden');
+                   
+                   // Animate progress bar to complete
+                   setTimeout(() => {
+                       progressBar1.classList.add('animate-progressSlideComplete');
+                   }, 200);
+                   
+                   animateFields();
+               }, 600);
+            }, 100);
+        });
+      
+        function animateFields() {
+            const fields = [
+                'titleSection',
+                'incomeSection'
+            ];
+            
+            fields.forEach((fieldId, index) => {
+                setTimeout(() => {
+                    const field = document.getElementById(fieldId);
+                    field.classList.remove('opacity-0', 'translate-x-[-30px]');
+                    field.classList.add('animate-slideInLeft');
+                }, 100 + (index * 150));
+            });
+        }
+
+        // Form functionality
+        let selectedIncome = 'below-1-lakh'; // Default selection
+        
+        const incomeButtons = {
+            'below-1-lakh': document.getElementById('below1LakhBtn'),
+            '1-to-5-lakhs': document.getElementById('oneToFiveLakhsBtn'),
+            '5-to-10-lakhs': document.getElementById('fiveToTenLakhsBtn'),
+            '10-to-25-lakhs': document.getElementById('tenToTwentyFiveLakhsBtn'),
+            'above-25-lakhs': document.getElementById('above25LakhsBtn')
+        };
+        
+        const continueBtn = document.getElementById('continueBtn');
+        const backBtn = document.getElementById('backBtn');
+        
+        // Function to update button styles based on current theme and selections
+        function updateButtonStyles() {
+            const theme = themes[currentTheme];
+            
+            // Update income buttons
+            Object.keys(incomeButtons).forEach(income => {
+                const button = incomeButtons[income];
+                if (income === selectedIncome) {
+                    button.className = `w-full py-3 px-4 ${theme.selectedButton} font-medium rounded-lg transition-all duration-300`;
+                } else {
+                    button.className = `w-full py-3 px-4 ${theme.unselectedButton} font-medium rounded-lg transition-all duration-300`;
+                }
+            });
+            
+            // Update continue button
+            if (currentTheme === 'night') {
+                continueBtn.className = 'flex-1 bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-purple-700';
+            } else if (currentTheme === 'colorful') {
+                continueBtn.className = 'flex-1 bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:from-colorful-secondary hover:to-colorful-primary';
+            } else if (currentTheme === 'white') {
+                continueBtn.className = 'flex-1 bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-gray-700';
+            } else {
+                continueBtn.className = 'flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue';
+            }
+        }
+        
+        // Income button event listeners
+        Object.keys(incomeButtons).forEach(income => {
+            incomeButtons[income].addEventListener('click', function() {
+                selectedIncome = income;
+                updateButtonStyles();
+            });
+        });
+        
+        // Continue button click handler
+        continueBtn.addEventListener('click', function() {
+            const formData = {
+                annualIncome: selectedIncome
+            };
+            
+            alert('Annual income information submitted successfully!\n' + JSON.stringify(formData, null, 2));
+        });
+        
+        // Back button click handler
+        backBtn.addEventListener('click', function() {
+            window.location.href = 'occupation.html';
+        });
+        
+        // Initialize button styles
+        setTimeout(() => {
+            updateButtonStyles();
+        }, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Bank Proofs - Goodwill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'goodwill-blue': '#2563eb',
+                        'goodwill-dark-blue': '#1d4ed8',
+                        'colorful-primary': '#ff6b6b',
+                        'colorful-secondary': '#4ecdc4',
+                        'colorful-accent': '#45b7d1',
+                        'colorful-gradient-start': '#667eea',
+                        'colorful-gradient-end': '#764ba2',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        progressSlide: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        progressSlideComplete: {
+                            '0%': { width: '90%' },
+                            '100%': { width: '100%' }
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' }
+                        }
+                    },
+                    animation: {
+                        slideUp: 'slideUp 0.6s ease-out forwards',
+                        slideInLeft: 'slideInLeft 0.4s ease-out forwards',
+                        progressSlide: 'progressSlide 1.2s ease-out forwards',
+                        progressSlideComplete: 'progressSlideComplete 1.2s ease-out forwards',
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans overflow-hidden transition-all duration-500" id="body">
+    <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500" id="mainBg">
+        <!-- Mobile Container -->
+        <div id="mobileContainer" class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
+            <!-- Header -->
+            <div class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500" id="header">
+                <!-- Menu Icon -->
+                <button class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                
+                <!-- Title -->
+                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Proofs</h1>
+                
+                <!-- Settings Icon -->
+                <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full relative overflow-hidden">
+                        <div class="h-full bg-blue-500 rounded-full w-[90%]" id="progressBar1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="bg-white px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500" id="formContent">
+                <div class="space-y-6">
+                    <!-- Title Section -->
+                    <div id="titleSection" class="opacity-0 transform translate-x-[-30px]">
+                        <h2 class="text-lg font-medium text-gray-800 mb-2 transition-all duration-500" id="title1">Uploads Bank Proof ( Accept PDF / Jpg / Png )</h2>
+                    </div>
+
+                    <!-- Upload Area -->
+                    <div id="uploadSection" class="opacity-0 transform translate-x-[-30px]">
+                        <div 
+                            id="dropZone"
+                            class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50 transition-all duration-300 hover:border-blue-400 hover:bg-blue-50"
+                        >
+                            <div class="flex flex-col items-center space-y-4">
+                                <!-- Cloud Upload Icon -->
+                                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                </div>
+                                
+                                <!-- Upload Text -->
+                                <div>
+                                    <p class="text-blue-500 font-medium mb-1">Browse file to upload</p>
+                                    <p class="text-gray-500 text-sm">or drag and drop files here</p>
+                                </div>
+                                
+                                <!-- Hidden File Input -->
+                                <input 
+                                    type="file" 
+                                    id="fileInput" 
+                                    class="hidden" 
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    multiple
+                                >
+                                
+                                <!-- Mobile Camera Input -->
+                                <input 
+                                    type="file" 
+                                    id="cameraInput" 
+                                    class="hidden" 
+                                    accept="image/*"
+                                    capture="environment"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Uploaded Files List -->
+                    <div id="uploadedFilesSection" class="opacity-0 transform translate-x-[-30px]">
+                        <div id="filesList" class="space-y-3">
+                            <!-- Sample uploading file -->
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center space-x-3">
+                                <!-- File Icon -->
+                                <div class="w-10 h-10 bg-blue-500 rounded flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                
+                                <!-- File Info -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">image_03.jpg</p>
+                                    <p class="text-xs text-gray-500">Uploading</p>
+                                    
+                                    <!-- Progress Bar -->
+                                    <div class="mt-2 w-full bg-gray-200 rounded-full h-1.5">
+                                        <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Progress Percentage -->
+                                <div class="text-sm font-medium text-blue-600">50%</div>
+                            </div>
+
+                            <!-- Sample uploaded file -->
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-3">
+                                <!-- File Thumbnail -->
+                                <div class="w-10 h-10 bg-green-500 rounded flex items-center justify-center flex-shrink-0">
+                                    <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Thumbnail" class="w-full h-full object-cover rounded">
+                                </div>
+                                
+                                <!-- File Info -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">image_02.png</p>
+                                    <div class="flex items-center space-x-2">
+                                        <p class="text-xs text-green-600">Uploaded</p>
+                                        <p class="text-xs text-gray-500">96.47 KB</p>
+                                        <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex items-center space-x-2">
+                                    <!-- View Button -->
+                                    <button class="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Delete Button -->
+                                    <button class="p-1 text-gray-400 hover:text-red-600 transition-colors" onclick="removeFile(this)">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Buttons -->
+            <div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200 px-6 py-4 transition-all duration-500" id="buttonContainer">
+                <div class="flex space-x-3">
+                    <!-- Back Button -->
+                    <button 
+                        id="backBtn"
+                        class="w-12 h-12 bg-goodwill-blue text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center hover:bg-goodwill-dark-blue"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Continue Button -->
+                    <button 
+                        id="continueBtn"
+                        class="flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue"
+                    >
+                        PROCEED TO E-SIGN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Upload Options Modal -->
+    <div id="mobileUploadModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-end justify-center">
+        <div class="bg-white rounded-t-2xl w-full max-w-md animate-slideUp">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold text-gray-800">Upload Options</h3>
+                <button id="closeMobileModal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Upload Options -->
+            <div class="p-4 space-y-3">
+                <!-- Camera Option -->
+                <button id="cameraOption" class="w-full flex items-center space-x-4 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="font-medium text-gray-900">Take Photo</p>
+                        <p class="text-sm text-gray-500">Capture using camera</p>
+                    </div>
+                </button>
+                
+                <!-- Gallery Option -->
+                <button id="galleryOption" class="w-full flex items-center space-x-4 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="font-medium text-gray-900">Choose from Gallery</p>
+                        <p class="text-sm text-gray-500">Browse files from device</p>
+                    </div>
+                </button>
+                
+                <!-- Files Option -->
+                <button id="filesOption" class="w-full flex items-center space-x-4 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+                    <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="font-medium text-gray-900">Browse Files</p>
+                        <p class="text-sm text-gray-500">Select PDF or image files</p>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Cancel Button -->
+            <div class="p-4 border-t">
+                <button id="cancelMobileUpload" class="w-full py-3 text-gray-600 hover:text-gray-800 transition-colors">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div id="imageViewerModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold text-gray-800" id="modalTitle">View Image</h3>
+                <button id="closeModal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Image Container -->
+            <div class="p-4">
+                <div id="cropContainer" class="relative bg-gray-100 rounded-lg overflow-hidden" style="max-height: 400px;">
+                    <img id="modalImage" src="" alt="Preview" class="w-full h-auto max-h-96 object-contain" crossorigin="anonymous">
+                    
+                    <!-- Crop Overlay -->
+                    <div id="cropOverlay" class="absolute inset-0 hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                        <div id="cropBox" class="absolute border-2 border-white border-dashed bg-transparent" style="top: 10%; left: 10%; width: 80%; height: 80%;">
+                            <!-- Resize handles -->
+                            <div class="absolute -top-1 -left-1 w-3 h-3 bg-white border border-gray-400 cursor-nw-resize" data-handle="nw"></div>
+                            <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-gray-400 cursor-n-resize" data-handle="n"></div>
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-white border border-gray-400 cursor-ne-resize" data-handle="ne"></div>
+                            <div class="absolute top-1/2 -right-1 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-400 cursor-e-resize" data-handle="e"></div>
+                            <div class="absolute -bottom-1 -right-1 w-3 h-3 bg-white border border-gray-400 cursor-se-resize" data-handle="se"></div>
+                            <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-gray-400 cursor-s-resize" data-handle="s"></div>
+                            <div class="absolute -bottom-1 -left-1 w-3 h-3 bg-white border border-gray-400 cursor-sw-resize" data-handle="sw"></div>
+                            <div class="absolute top-1/2 -left-1 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-400 cursor-w-resize" data-handle="w"></div>
+                            <!-- Move handle -->
+                            <div class="absolute inset-0 cursor-move" data-handle="move"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Actions -->
+            <div class="flex items-center justify-between p-4 border-t bg-gray-50">
+                <button id="cropToggle" class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                    </svg>
+                    <span id="cropToggleText">Crop</span>
+                </button>
+                
+                <div class="flex space-x-2">
+                    <button id="cancelCrop" class="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors">Cancel</button>
+                    <button id="saveCrop" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors hidden">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme management (same as other pages)
+        let currentTheme = 'default';
+        
+        const themes = {
+            default: {
+                body: 'bg-gray-50',
+                mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-200',
+                headerTitle: 'text-gray-800',
+                formContent: 'bg-white',
+                title1: 'text-gray-800',
+                buttonContainer: 'bg-white border-gray-200',
+                dropZone: 'border-gray-300 bg-gray-50 hover:border-blue-400 hover:bg-blue-50'
+            },
+            night: {
+                body: 'bg-gray-900',
+                mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
+                mobileContainer: 'bg-gray-800 shadow-2xl',
+                header: 'bg-gray-800 border-gray-600',
+                headerTitle: 'text-gray-100',
+                formContent: 'bg-gray-800',
+                title1: 'text-gray-100',
+                buttonContainer: 'bg-gray-800 border-gray-600',
+                dropZone: 'border-gray-600 bg-gray-700 hover:border-purple-400 hover:bg-purple-900/20'
+            },
+            white: {
+                body: 'bg-white',
+                mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-300',
+                headerTitle: 'text-gray-700',
+                formContent: 'bg-white',
+                title1: 'text-gray-700',
+                buttonContainer: 'bg-white border-gray-300',
+                dropZone: 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+            },
+            colorful: {
+                body: 'bg-gradient-to-br from-pink-100 to-purple-100',
+                mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
+                mobileContainer: 'bg-white',
+                header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                headerTitle: 'text-colorful-primary',
+                formContent: 'bg-gradient-to-b from-white to-purple-50',
+                title1: 'text-colorful-primary',
+                buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                dropZone: 'border-purple-300 bg-purple-50 hover:border-colorful-primary hover:bg-purple-100'
+            }
+        };
+        
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            
+            // Apply theme classes
+            document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
+            document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
+            document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
+            document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
+            document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
+            document.getElementById('formContent').className = `${theme.formContent} px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500`;
+            document.getElementById('title1').className = `text-lg font-medium ${theme.title1} mb-2 transition-all duration-500`;
+            document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
+            document.getElementById('dropZone').className = `border-2 border-dashed rounded-lg p-8 text-center transition-all duration-300 ${theme.dropZone}`;
+            
+            // Update continue button
+            if (currentTheme === 'night') {
+                document.getElementById('continueBtn').className = 'flex-1 bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-purple-700';
+            } else if (currentTheme === 'colorful') {
+                document.getElementById('continueBtn').className = 'flex-1 bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:from-colorful-secondary hover:to-colorful-primary';
+            } else if (currentTheme === 'white') {
+                document.getElementById('continueBtn').className = 'flex-1 bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-gray-700';
+            } else {
+                document.getElementById('continueBtn').className = 'flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue';
+            }
+        }
+        
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const themeOrder = ['default', 'night', 'white', 'colorful'];
+            const currentIndex = themeOrder.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themeOrder.length;
+            currentTheme = themeOrder[nextIndex];
+            
+            applyTheme(currentTheme);
+            
+            // Show theme name briefly
+            const themeNames = {
+                'default': 'Default Mode',
+                'night': 'Night Mode',
+                'white': 'White Mode',
+                'colorful': 'Colorful Mode'
+            };
+            
+            // Create temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+            notification.textContent = themeNames[currentTheme];
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 1500);
+        });
+        
+        // Page load animation
+        window.addEventListener('load', function() {
+            const mobileContainer = document.getElementById('mobileContainer');
+            const progressBar1 = document.getElementById('progressBar1');
+            
+            setTimeout(() => {
+                mobileContainer.classList.remove('translate-y-full', 'opacity-0');
+                mobileContainer.classList.add('animate-slideUp');
+               
+               setTimeout(() => {
+                   document.body.classList.remove('overflow-hidden');
+                   
+                   // Animate progress bar to complete
+                   setTimeout(() => {
+                       progressBar1.classList.add('animate-progressSlideComplete');
+                   }, 200);
+                   
+                   animateFields();
+               }, 600);
+            }, 100);
+        });
+      
+        function animateFields() {
+            const fields = [
+                'titleSection',
+                'uploadSection',
+                'uploadedFilesSection'
+            ];
+            
+            fields.forEach((fieldId, index) => {
+                setTimeout(() => {
+                    const field = document.getElementById(fieldId);
+                    field.classList.remove('opacity-0', 'translate-x-[-30px]');
+                    field.classList.add('animate-slideInLeft');
+                }, 100 + (index * 150));
+            });
+        }
+
+        // File upload functionality
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const cameraInput = document.getElementById('cameraInput');
+        const filesList = document.getElementById('filesList');
+        const mobileUploadModal = document.getElementById('mobileUploadModal');
+        let uploadedFiles = [];
+        
+        // Mobile device detection
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+        }
+
+        // Click to browse files
+        dropZone.addEventListener('click', function() {
+            if (isMobileDevice()) {
+                showMobileUploadOptions();
+            } else {
+                fileInput.click();
+            }
+        });
+        
+        // Show mobile upload options
+        function showMobileUploadOptions() {
+            mobileUploadModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Hide mobile upload options
+        function hideMobileUploadOptions() {
+            mobileUploadModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        // Mobile upload modal event listeners
+        document.getElementById('closeMobileModal').addEventListener('click', hideMobileUploadOptions);
+        document.getElementById('cancelMobileUpload').addEventListener('click', hideMobileUploadOptions);
+        
+        // Camera option
+        document.getElementById('cameraOption').addEventListener('click', function() {
+            hideMobileUploadOptions();
+            cameraInput.click();
+        });
+        
+        // Gallery option (images only)
+        document.getElementById('galleryOption').addEventListener('click', function() {
+            hideMobileUploadOptions();
+            const galleryInput = document.createElement('input');
+            galleryInput.type = 'file';
+            galleryInput.accept = 'image/*';
+            galleryInput.multiple = true;
+            galleryInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                handleFiles(files);
+            });
+            galleryInput.click();
+        });
+        
+        // Files option (all supported types)
+        document.getElementById('filesOption').addEventListener('click', function() {
+            hideMobileUploadOptions();
+            fileInput.click();
+        });
+        
+        // Close modal when clicking outside
+        mobileUploadModal.addEventListener('click', function(e) {
+            if (e.target === mobileUploadModal) {
+                hideMobileUploadOptions();
+            }
+        });
+
+        // Drag and drop functionality
+        dropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            dropZone.classList.add('border-blue-500', 'bg-blue-100');
+        });
+
+        dropZone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            dropZone.classList.remove('border-blue-500', 'bg-blue-100');
+        });
+
+        dropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            dropZone.classList.remove('border-blue-500', 'bg-blue-100');
+            
+            const files = Array.from(e.dataTransfer.files);
+            handleFiles(files);
+        });
+
+        // File input change
+        fileInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+        
+        // Camera input change
+        cameraInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+
+        // Handle file uploads
+        function handleFiles(files) {
+            files.forEach(file => {
+                handleFileUpload(file);
+            });
+        }
+
+        // Function to handle file upload
+        function handleFileUpload(file) {
+            if (!file) return;
+            
+            // Validate file type
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+            if (!allowedTypes.includes(file.type)) {
+                showNotification('Please upload only PDF, JPG, or PNG files.', 'error');
+                return;
+            }
+            
+            // Validate file size (10MB limit)
+            const maxSize = 10 * 1024 * 1024; // 10MB
+            if (file.size > maxSize) {
+                showNotification('File size must be less than 10MB.', 'error');
+                return;
+            }
+            
+            // Check if PDF is password protected
+            if (file.type === 'application/pdf') {
+                checkPDFPasswordProtection(file).then(isPasswordProtected => {
+                    if (isPasswordProtected) {
+                        showNotification('PDF is password protected. Please upload a PDF without password protection.', 'error');
+                        return;
+                    }
+                    // If PDF is not password protected, proceed with upload
+                    proceedWithUpload(file);
+                }).catch(error => {
+                    console.error('Error checking PDF:', error);
+                    // If we can't determine, proceed with upload
+                    proceedWithUpload(file);
+                });
+            } else {
+                // For non-PDF files, proceed directly
+                proceedWithUpload(file);
+            }
+        }
+        
+        // Function to check if PDF is password protected
+        function checkPDFPasswordProtection(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const arrayBuffer = e.target.result;
+                        const uint8Array = new Uint8Array(arrayBuffer);
+                        
+                        // Convert to string for pattern matching
+                        let pdfString = '';
+                        for (let i = 0; i < Math.min(uint8Array.length, 1024); i++) {
+                            pdfString += String.fromCharCode(uint8Array[i]);
+                        }
+                        
+                        // Check for PDF header
+                        if (!pdfString.startsWith('%PDF-')) {
+                            resolve(false); // Not a valid PDF
+                            return;
+                        }
+                        
+                        // Look for encryption indicators in the PDF
+                        const encryptionPatterns = [
+                            '/Encrypt',
+                            '/Filter/Standard',
+                            '/V 1', '/V 2', '/V 4', '/V 5', // Encryption versions
+                            '/R 2', '/R 3', '/R 4', '/R 5', '/R 6', // Revision numbers
+                            '/P -', // Permissions (negative values indicate restrictions)
+                            'endobj'
+                        ];
+                        
+                        let hasEncryptionMarkers = false;
+                        let encryptionCount = 0;
+                        
+                        for (const pattern of encryptionPatterns) {
+                            if (pdfString.includes(pattern)) {
+                                encryptionCount++;
+                                if (pattern === '/Encrypt') {
+                                    hasEncryptionMarkers = true;
+                                }
+                            }
+                        }
+                        
+                        // If we find /Encrypt or multiple encryption-related patterns, likely password protected
+                        const isPasswordProtected = hasEncryptionMarkers || encryptionCount >= 3;
+                        
+                        resolve(isPasswordProtected);
+                        
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+                
+                reader.onerror = function() {
+                    reject(new Error('Failed to read file'));
+                };
+                
+                // Read only the first 1KB of the file for efficiency
+                const blob = file.slice(0, 1024);
+                reader.readAsArrayBuffer(blob);
+            });
+        }
+        
+        // Function to proceed with file upload
+        function proceedWithUpload(file) {
+            const uploadId = 'upload_' + Date.now();
+            const uploadItem = createUploadItem(uploadId, file);
+            filesList.appendChild(uploadItem);
+            
+            // Simulate upload progress
+            simulateUpload(uploadId, file);
+        }
+
+        // Validate file type
+        function isValidFile(file) {
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+            return allowedTypes.includes(file.type);
+        }
+
+        // Simulate file upload
+        function uploadFile(file) {
+            const fileId = Date.now() + Math.random();
+            const fileItem = createFileItem(file, fileId);
+            filesList.appendChild(fileItem);
+            
+            // Simulate upload progress
+            simulateUpload(fileId, file);
+        }
+        
+        // Function to show notifications
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.upload-notification');
+            existingNotifications.forEach(notification => notification.remove());
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `upload-notification fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg text-white text-sm font-medium z-50 transition-all duration-300 max-w-sm text-center`;
+            
+            // Set background color based on type
+            if (type === 'error') {
+                notification.classList.add('bg-red-500');
+            } else if (type === 'success') {
+                notification.classList.add('bg-green-500');
+            } else {
+                notification.classList.add('bg-blue-500');
+            }
+            
+            notification.textContent = message;
+            
+            // Add to document
+            document.body.appendChild(notification);
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translate(-50%, -100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+        
+        // Function to create upload item in the list
+        function createUploadItem(uploadId, file) {
+            const div = document.createElement('div');
+            div.className = 'bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center space-x-3';
+            div.id = `file-${uploadId}`;
+            
+            const fileSize = formatFileSize(file.size);
+            const fileName = file.name;
+            
+            div.innerHTML = `
+                <!-- File Icon -->
+                <div class="w-10 h-10 bg-blue-500 rounded flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                
+                <!-- File Info -->
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">${fileName}</p>
+                    <p class="text-xs text-gray-500">Uploading</p>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-2 w-full bg-gray-200 rounded-full h-1.5">
+                        <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300 progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Progress Percentage -->
+                <div class="text-sm font-medium text-blue-600 progress-text">0%</div>
+            `;
+            
+            return div;
+        }
+
+        // Create file item element
+        function createFileItem(file, fileId) {
+            const div = document.createElement('div');
+            div.className = 'bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center space-x-3';
+            div.id = `file-${fileId}`;
+            
+            const fileSize = formatFileSize(file.size);
+            const fileName = file.name;
+            
+            div.innerHTML = `
+                <!-- File Icon -->
+                <div class="w-10 h-10 bg-blue-500 rounded flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                
+                <!-- File Info -->
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">${fileName}</p>
+                    <p class="text-xs text-gray-500">Uploading</p>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-2 w-full bg-gray-200 rounded-full h-1.5">
+                        <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300 progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Progress Percentage -->
+                <div class="text-sm font-medium text-blue-600 progress-text">0%</div>
+            `;
+            
+            return div;
+        }
+
+        // Simulate upload progress
+        function simulateUpload(fileId, file) {
+            const fileElement = document.getElementById(`file-${fileId}`);
+            const progressBar = fileElement.querySelector('.progress-bar');
+            const progressText = fileElement.querySelector('.progress-text');
+            const statusText = fileElement.querySelector('.text-xs');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Update to completed state
+                    fileElement.className = 'bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-3';
+                    statusText.innerHTML = `
+                        <div class="flex items-center space-x-2">
+                            <p class="text-xs text-green-600">Uploaded</p>
+                            <p class="text-xs text-gray-500">${formatFileSize(file.size)}</p>
+                            <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    `;
+                    
+                    // Add action buttons
+                    const actionsDiv = document.createElement('div');
+                    actionsDiv.className = 'flex items-center space-x-2';
+                    actionsDiv.innerHTML = `
+                        <!-- View Button -->
+                        <button class="p-1 text-gray-400 hover:text-gray-600 transition-colors view-btn" data-file-name="${file.name}" data-file-url="${URL.createObjectURL(file)}">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                        
+                        <!-- Delete Button -->
+                        <button class="p-1 text-gray-400 hover:text-red-600 transition-colors" onclick="removeFile(this)">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    `;
+                    
+                    // Replace progress text with action buttons
+                    progressText.replaceWith(actionsDiv);
+                    
+                    // Add view button event listener
+                    const viewBtn = actionsDiv.querySelector('.view-btn');
+                    viewBtn.addEventListener('click', function() {
+                        openImageViewer(file.name, URL.createObjectURL(file));
+                    });
+                    
+                    // Hide progress bar
+                    progressBar.parentElement.style.display = 'none';
+                }
+                
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${Math.round(progress)}%`;
+            }, 200);
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Remove file function
+        function removeFile(button) {
+            const fileItem = button.closest('.bg-green-50, .bg-blue-50');
+            if (fileItem) {
+                fileItem.remove();
+            }
+        }
+
+        // Image viewer functionality
+        const imageViewerModal = document.getElementById('imageViewerModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeModal = document.getElementById('closeModal');
+        const cropToggle = document.getElementById('cropToggle');
+        const cropToggleText = document.getElementById('cropToggleText');
+        const cropOverlay = document.getElementById('cropOverlay');
+        const cropBox = document.getElementById('cropBox');
+        const cancelCrop = document.getElementById('cancelCrop');
+        const saveCrop = document.getElementById('saveCrop');
+        
+        let isCropping = false;
+        let isDragging = false;
+        let isResizing = false;
+        let dragStart = { x: 0, y: 0 };
+        let cropData = { x: 0, y: 0, width: 0, height: 0 };
+        let currentHandle = null;
+        
+        // Open image viewer
+        function openImageViewer(fileName, fileUrl) {
+            modalTitle.textContent = fileName;
+            modalImage.src = fileUrl;
+            imageViewerModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // Reset crop state
+            isCropping = false;
+            cropOverlay.classList.add('hidden');
+            cropToggleText.textContent = 'Crop';
+            saveCrop.classList.add('hidden');
+        }
+        
+        // Close modal
+        function closeImageViewer() {
+            imageViewerModal.classList.add('hidden');
+            document.body.style.overflow = '';
+            modalImage.src = '';
+            isCropping = false;
+            cropOverlay.classList.add('hidden');
+        }
+        
+        // Event listeners for modal
+        closeModal.addEventListener('click', closeImageViewer);
+        cancelCrop.addEventListener('click', closeImageViewer);
+        
+        // Close modal when clicking outside
+        imageViewerModal.addEventListener('click', function(e) {
+            if (e.target === imageViewerModal) {
+                closeImageViewer();
+            }
+        });
+        
+        // Toggle crop mode
+        cropToggle.addEventListener('click', function() {
+            isCropping = !isCropping;
+            
+            if (isCropping) {
+                cropOverlay.classList.remove('hidden');
+                cropToggleText.textContent = 'Exit Crop';
+                saveCrop.classList.remove('hidden');
+                
+                // Initialize crop box
+                const container = document.getElementById('cropContainer');
+                const rect = container.getBoundingClientRect();
+                const img = modalImage;
+                const imgRect = img.getBoundingClientRect();
+                
+                // Set initial crop box size and position
+                const boxWidth = imgRect.width * 0.8;
+                const boxHeight = imgRect.height * 0.8;
+                const boxLeft = (imgRect.width - boxWidth) / 2;
+                const boxTop = (imgRect.height - boxHeight) / 2;
+                
+                cropBox.style.left = boxLeft + 'px';
+                cropBox.style.top = boxTop + 'px';
+                cropBox.style.width = boxWidth + 'px';
+                cropBox.style.height = boxHeight + 'px';
+                
+                cropData = {
+                    x: boxLeft,
+                    y: boxTop,
+                    width: boxWidth,
+                    height: boxHeight
+                };
+            } else {
+                cropOverlay.classList.add('hidden');
+                cropToggleText.textContent = 'Crop';
+                saveCrop.classList.add('hidden');
+            }
+        });
+        
+        // Crop box interaction
+        cropBox.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            const handle = e.target.dataset.handle;
+            
+            if (handle) {
+                currentHandle = handle;
+                isDragging = handle === 'move';
+                isResizing = handle !== 'move';
+                
+                dragStart.x = e.clientX;
+                dragStart.y = e.clientY;
+                
+                const rect = cropBox.getBoundingClientRect();
+                cropData = {
+                    x: rect.left - modalImage.getBoundingClientRect().left,
+                    y: rect.top - modalImage.getBoundingClientRect().top,
+                    width: rect.width,
+                    height: rect.height
+                };
+            }
+        });
+        
+        // Mouse move for crop box
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging && !isResizing) return;
+            
+            const deltaX = e.clientX - dragStart.x;
+            const deltaY = e.clientY - dragStart.y;
+            const imgRect = modalImage.getBoundingClientRect();
+            
+            if (isDragging) {
+                // Move the crop box
+                let newX = cropData.x + deltaX;
+                let newY = cropData.y + deltaY;
+                
+                // Constrain to image bounds
+                newX = Math.max(0, Math.min(newX, imgRect.width - cropData.width));
+                newY = Math.max(0, Math.min(newY, imgRect.height - cropData.height));
+                
+                cropBox.style.left = newX + 'px';
+                cropBox.style.top = newY + 'px';
+            } else if (isResizing) {
+                // Resize the crop box based on handle
+                let newX = cropData.x;
+                let newY = cropData.y;
+                let newWidth = cropData.width;
+                let newHeight = cropData.height;
+                
+                switch (currentHandle) {
+                    case 'se':
+                        newWidth = Math.min(cropData.width + deltaX, imgRect.width - cropData.x);
+                        newHeight = Math.min(cropData.height + deltaY, imgRect.height - cropData.y);
+                        break;
+                    case 'sw':
+                        newX = Math.max(0, cropData.x + deltaX);
+                        newWidth = cropData.width - (newX - cropData.x);
+                        newHeight = Math.min(cropData.height + deltaY, imgRect.height - cropData.y);
+                        break;
+                    case 'ne':
+                        newY = Math.max(0, cropData.y + deltaY);
+                        newWidth = Math.min(cropData.width + deltaX, imgRect.width - cropData.x);
+                        newHeight = cropData.height - (newY - cropData.y);
+                        break;
+                    case 'nw':
+                        newX = Math.max(0, cropData.x + deltaX);
+                        newY = Math.max(0, cropData.y + deltaY);
+                        newWidth = cropData.width - (newX - cropData.x);
+                        newHeight = cropData.height - (newY - cropData.y);
+                        break;
+                    case 'n':
+                        newY = Math.max(0, cropData.y + deltaY);
+                        newHeight = cropData.height - (newY - cropData.y);
+                        break;
+                    case 's':
+                        newHeight = Math.min(cropData.height + deltaY, imgRect.height - cropData.y);
+                        break;
+                    case 'e':
+                        newWidth = Math.min(cropData.width + deltaX, imgRect.width - cropData.x);
+                        break;
+                    case 'w':
+                        newX = Math.max(0, cropData.x + deltaX);
+                        newWidth = cropData.width - (newX - cropData.x);
+                        break;
+                }
+                
+                // Ensure minimum size
+                newWidth = Math.max(50, newWidth);
+                newHeight = Math.max(50, newHeight);
+                
+                cropBox.style.left = newX + 'px';
+                cropBox.style.top = newY + 'px';
+                cropBox.style.width = newWidth + 'px';
+                cropBox.style.height = newHeight + 'px';
+            }
+        });
+        
+        // Mouse up
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            isResizing = false;
+            currentHandle = null;
+        });
+        
+        // Save crop
+        saveCrop.addEventListener('click', function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = modalImage;
+            
+            // Get crop dimensions relative to the actual image
+            const imgRect = img.getBoundingClientRect();
+            const cropRect = cropBox.getBoundingClientRect();
+            
+            const scaleX = img.naturalWidth / imgRect.width;
+            const scaleY = img.naturalHeight / imgRect.height;
+            
+            const cropX = (cropRect.left - imgRect.left) * scaleX;
+            const cropY = (cropRect.top - imgRect.top) * scaleY;
+            const cropWidth = cropRect.width * scaleX;
+            const cropHeight = cropRect.height * scaleY;
+            
+            canvas.width = cropWidth;
+            canvas.height = cropHeight;
+            
+            // Draw cropped image
+            ctx.drawImage(img, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+            
+            // Convert to blob and create new file
+            canvas.toBlob(function(blob) {
+                const croppedUrl = URL.createObjectURL(blob);
+                
+                // Update the original image with cropped version
+                img.src = croppedUrl;
+                
+                // Show success message
+                alert('Image cropped and saved successfully!');
+                
+                // Close crop mode
+                isCropping = false;
+                cropOverlay.classList.add('hidden');
+                cropToggleText.textContent = 'Crop';
+                saveCrop.classList.add('hidden');
+            }, 'image/jpeg', 0.9);
+        });
+        
+        // Add view button event listeners to existing sample files
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener to the sample uploaded file view button
+            const sampleViewBtn = document.querySelector('.bg-green-50 .p-1');
+            if (sampleViewBtn) {
+                sampleViewBtn.addEventListener('click', function() {
+                    openImageViewer('image_02.png', 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop');
+                });
+            }
+        });
+
+        // Continue button click handler
+        document.getElementById('continueBtn').addEventListener('click', function() {
+            const uploadedFileElements = document.querySelectorAll('.bg-green-50');
+            const fileCount = uploadedFileElements.length;
+            
+            if (fileCount === 0) {
+                alert('Please upload at least one bank proof document before proceeding.');
+                return;
+            }
+            
+            alert(`${fileCount} file(s) uploaded successfully! Proceeding to next step.`);
+        });
+        
+        // Back button click handler
+        document.getElementById('backBtn').addEventListener('click', function() {
+            window.location.href = 'segments.html';
+        });
+    </script>
+</body>
+</html>

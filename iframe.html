@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPV Capture - Goodwill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'goodwill-blue': '#2563eb',
+                        'goodwill-dark-blue': '#1d4ed8',
+                        'colorful-primary': '#ff6b6b',
+                        'colorful-secondary': '#4ecdc4',
+                        'colorful-accent': '#45b7d1',
+                        'colorful-gradient-start': '#667eea',
+                        'colorful-gradient-end': '#764ba2',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        progressSlide: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        progressSlideComplete: {
+                            '0%': { width: '90%' },
+                            '100%': { width: '100%' }
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' }
+                        }
+                    },
+                    animation: {
+                        slideUp: 'slideUp 0.6s ease-out forwards',
+                        slideInLeft: 'slideInLeft 0.4s ease-out forwards',
+                        progressSlide: 'progressSlide 1.2s ease-out forwards',
+                        progressSlideComplete: 'progressSlideComplete 1.2s ease-out forwards',
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans overflow-hidden transition-all duration-500" id="body">
+    <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500" id="mainBg">
+        <!-- Mobile Container -->
+        <div id="mobileContainer" class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
+            <!-- Header -->
+            <div class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500" id="header">
+                <!-- Back Button -->
+                <button 
+                    id="backBtn"
+                    class="w-8 h-8 flex items-center justify-center"
+                >
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </button>
+                
+                <!-- Title -->
+                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">IPV Capture</h1>
+                
+                <!-- Settings Icon -->
+                <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full relative overflow-hidden">
+                        <div class="h-full bg-blue-500 rounded-full w-[100%]" id="progressBar1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Iframe Content -->
+            <div class="bg-white transition-all duration-500" id="iframeContent">
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="flex items-center justify-center py-20">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-goodwill-blue"></div>
+                    <span class="ml-3 text-gray-600">Loading IPV Capture...</span>
+                </div>
+                
+                <!-- Iframe Container -->
+                <div id="iframeContainer" class="hidden">
+                    <iframe 
+                        id="ipvIframe"
+                        src="https://w3-ipvcapture.vercel.app/?clientname=ram&clientcode=a00002"
+                        class="w-full border-0"
+                        style="height: calc(100vh - 200px);"
+                        title="IPV Capture Application"
+                        allow="camera; microphone; geolocation"
+                        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+                    ></iframe>
+                </div>
+                
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden p-6 text-center">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <svg class="w-12 h-12 text-red-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        <h3 class="text-lg font-medium text-red-800 mb-2">Failed to Load</h3>
+                        <p class="text-red-600 text-sm">Unable to load the IPV Capture application. Please check your internet connection and try again.</p>
+                        <button 
+                            id="retryBtn"
+                            class="mt-4 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-300"
+                        >
+                            Retry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme management
+        let currentTheme = 'default';
+        
+        const themes = {
+            default: {
+                body: 'bg-gray-50',
+                mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-200',
+                headerTitle: 'text-gray-800',
+                iframeContent: 'bg-white'
+            },
+            night: {
+                body: 'bg-gray-900',
+                mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
+                mobileContainer: 'bg-gray-800 shadow-2xl',
+                header: 'bg-gray-800 border-gray-600',
+                headerTitle: 'text-gray-100',
+                iframeContent: 'bg-gray-800'
+            },
+            white: {
+                body: 'bg-white',
+                mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-300',
+                headerTitle: 'text-gray-700',
+                iframeContent: 'bg-white'
+            },
+            colorful: {
+                body: 'bg-gradient-to-br from-pink-100 to-purple-100',
+                mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
+                mobileContainer: 'bg-white',
+                header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                headerTitle: 'text-colorful-primary',
+                iframeContent: 'bg-gradient-to-b from-white to-purple-50'
+            }
+        };
+        
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            
+            // Apply theme classes
+            document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
+            document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
+            document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
+            document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
+            document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
+            document.getElementById('iframeContent').className = `${theme.iframeContent} transition-all duration-500`;
+        }
+        
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const themeOrder = ['default', 'night', 'white', 'colorful'];
+            const currentIndex = themeOrder.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themeOrder.length;
+            currentTheme = themeOrder[nextIndex];
+            
+            applyTheme(currentTheme);
+            
+            // Show theme name briefly
+            const themeNames = {
+                'default': 'Default Mode',
+                'night': 'Night Mode',
+                'white': 'White Mode',
+                'colorful': 'Colorful Mode'
+            };
+            
+            // Create temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+            notification.textContent = themeNames[currentTheme];
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 1500);
+        });
+        
+        // Page load animation
+        window.addEventListener('load', function() {
+            const mobileContainer = document.getElementById('mobileContainer');
+            
+            setTimeout(() => {
+                mobileContainer.classList.remove('translate-y-full', 'opacity-0');
+                mobileContainer.classList.add('animate-slideUp');
+               
+               setTimeout(() => {
+                   document.body.classList.remove('overflow-hidden');
+                   
+                   // Initialize iframe loading
+                   initializeIframe();
+               }, 600);
+            }, 100);
+        });
+        
+        // Iframe functionality
+        const iframe = document.getElementById('ipvIframe');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const iframeContainer = document.getElementById('iframeContainer');
+        const errorMessage = document.getElementById('errorMessage');
+        const retryBtn = document.getElementById('retryBtn');
+        const backBtn = document.getElementById('backBtn');
+        
+        let loadTimeout;
+        
+        function initializeIframe() {
+            // Show loading indicator
+            loadingIndicator.classList.remove('hidden');
+            iframeContainer.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            
+            // Set a timeout for loading
+            loadTimeout = setTimeout(() => {
+                showError();
+            }, 15000); // 15 seconds timeout
+            
+            // Listen for iframe load events
+            iframe.addEventListener('load', function() {
+                clearTimeout(loadTimeout);
+                showIframe();
+            });
+            
+            iframe.addEventListener('error', function() {
+                clearTimeout(loadTimeout);
+                showError();
+            });
+        }
+        
+        function showIframe() {
+            loadingIndicator.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            iframeContainer.classList.remove('hidden');
+        }
+        
+        function showError() {
+            loadingIndicator.classList.add('hidden');
+            iframeContainer.classList.add('hidden');
+            errorMessage.classList.remove('hidden');
+        }
+        
+        function retryLoad() {
+            // Reload the iframe
+            iframe.src = iframe.src;
+            initializeIframe();
+        }
+        
+        // Event listeners
+        retryBtn.addEventListener('click', retryLoad);
+        
+        backBtn.addEventListener('click', function() {
+            window.location.href = 'signature.html';
+        });
+        
+        // Handle iframe communication (if needed)
+        window.addEventListener('message', function(event) {
+            // Handle messages from the iframe if needed
+            if (event.origin === 'https://w3-ipvcapture.vercel.app') {
+                console.log('Message from iframe:', event.data);
+                
+                // You can handle specific messages here
+                if (event.data.type === 'ipv_complete') {
+                    // Handle IPV completion
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+                    notification.textContent = 'IPV Capture completed successfully!';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 300);
+                    }, 3000);
+                }
+            }
+        });
+        
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Page is hidden, pause any timers if needed
+                clearTimeout(loadTimeout);
+            } else {
+                // Page is visible again, resume if needed
+                if (loadingIndicator && !loadingIndicator.classList.contains('hidden')) {
+                    // Restart loading timeout if still loading
+                    loadTimeout = setTimeout(() => {
+                        showError();
+                    }, 15000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

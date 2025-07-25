@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segments - Goodwill</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'goodwill-blue': '#2563eb',
+                        'goodwill-dark-blue': '#1d4ed8',
+                        'colorful-primary': '#ff6b6b',
+                        'colorful-secondary': '#4ecdc4',
+                        'colorful-accent': '#45b7d1',
+                        'colorful-gradient-start': '#667eea',
+                        'colorful-gradient-end': '#764ba2',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        progressSlide: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        progressSlideComplete: {
+                            '0%': { width: '90%' },
+                            '100%': { width: '100%' }
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' }
+                        }
+                    },
+                    animation: {
+                        slideUp: 'slideUp 0.6s ease-out forwards',
+                        slideInLeft: 'slideInLeft 0.4s ease-out forwards',
+                        progressSlide: 'progressSlide 1.2s ease-out forwards',
+                        progressSlideComplete: 'progressSlideComplete 1.2s ease-out forwards',
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans overflow-hidden transition-all duration-500" id="body">
+    <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500" id="mainBg">
+        <!-- Mobile Container -->
+        <div id="mobileContainer" class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
+            <!-- Header -->
+            <div class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500" id="header">
+                <!-- Menu Icon -->
+                <button class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                
+                <!-- Title -->
+                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">SEGMENTS</h1>
+                
+                <!-- Settings Icon -->
+                <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+                    <div class="flex-1 h-1 bg-blue-500 rounded-full relative overflow-hidden">
+                        <div class="h-full bg-blue-500 rounded-full w-[90%]" id="progressBar1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="bg-white px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500" id="formContent">
+                <div class="space-y-6">
+                    <!-- Title Section -->
+                    <div id="titleSection" class="opacity-0 transform translate-x-[-30px]">
+                        <h2 class="text-lg font-medium text-gray-800 mb-2 transition-all duration-500" id="title1">Select Segments</h2>
+                    </div>
+
+                    <!-- Segments Section -->
+                    <div id="segmentsSection" class="opacity-0 transform translate-x-[-30px]">
+                        <div class="space-y-3">
+                            <!-- Equity Segment -->
+                            <div 
+                                id="equitySegment"
+                                class="w-full p-4 bg-goodwill-blue text-white rounded-lg transition-all duration-300 cursor-pointer relative"
+                                data-segment="equity"
+                            >
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-semibold text-base">Equity</h3>
+                                        <p class="text-sm opacity-90">NSE Cash, BSE Cash</p>
+                                    </div>
+                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- F & O Segment -->
+                            <div 
+                                id="foSegment"
+                                class="w-full p-4 bg-goodwill-blue text-white rounded-lg transition-all duration-300 cursor-pointer relative"
+                                data-segment="fo"
+                            >
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-semibold text-base">F & O</h3>
+                                        <p class="text-sm opacity-90">NSE F & O, BSE F & O</p>
+                                    </div>
+                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Commodities Segment -->
+                            <div 
+                                id="commoditiesSegment"
+                                class="w-full p-4 bg-gray-200 text-gray-700 rounded-lg transition-all duration-300 cursor-pointer relative"
+                                data-segment="commodities"
+                            >
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-semibold text-base">Commodities</h3>
+                                        <p class="text-sm opacity-75">NSE, BSE, MCX</p>
+                                    </div>
+                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center" style="display: none;">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brokerage Plan Section -->
+                    <div id="brokeragePlanSection" class="opacity-0 transform translate-x-[-30px]">
+                        <h3 class="text-lg font-medium text-gray-800 mb-4 transition-all duration-500" id="brokeragePlanTitle">Brokerage Plan</h3>
+                        
+                        <!-- Plan Selection Cards -->
+                        <div class="flex space-x-3 mb-4">
+                            <!-- Traditional Plan Card -->
+                            <div 
+                                id="traditionalPlanCard"
+                                class="flex-1 bg-goodwill-blue text-white rounded-lg p-4 relative cursor-pointer transition-all duration-300"
+                                data-plan="traditional"
+                            >
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-base">Traditional</h4>
+                                    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-sm opacity-90">Plan</p>
+                            </div>
+                            
+                            <!-- Discount Plan Card -->
+                            <div 
+                                id="discountPlanCard"
+                                class="flex-1 bg-gray-200 text-gray-700 rounded-lg p-4 relative cursor-pointer transition-all duration-300"
+                                data-plan="discount"
+                            >
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-base">Discount</h4>
+                                    <div class="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center" style="display: none;">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-sm opacity-75">Plan</p>
+                            </div>
+                        </div>
+
+                        <!-- Plan Toggle and Details -->
+                        <div class="bg-green-50 rounded-lg p-4 space-y-4">
+                            <!-- Plan Toggle -->
+                            <div class="flex space-x-2">
+                                <button 
+                                    id="traditionalBtn"
+                                    class="px-4 py-2 bg-goodwill-blue text-white font-medium rounded-lg transition-all duration-300"
+                                    data-plan="traditional"
+                                >
+                                    Traditional
+                                </button>
+                                
+                                <button 
+                                    id="discountBtn"
+                                    class="px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300"
+                                    data-plan="discount"
+                                >
+                                    Discount
+                                </button>
+                            </div>
+
+                            <!-- Brokerage Details -->
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Equity Intraday :</span>
+                                    <span class="font-medium text-gray-800" id="equityIntraday">0.5 %</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Equity Delivery :</span>
+                                    <span class="font-medium text-gray-800" id="equityDelivery">0.1 %</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Equity Futures :</span>
+                                    <span class="font-medium text-gray-800" id="equityFutures">0.05%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Equity Options :</span>
+                                    <span class="font-medium text-gray-800" id="equityOptions">Rs 100 per lot</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">MCX Futures :</span>
+                                    <span class="font-medium text-gray-800" id="mcxFutures">0.06 %</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">MCX Options :</span>
+                                    <span class="font-medium text-gray-800" id="mcxOptions">Rs 100 per lot</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Buttons -->
+            <div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200 px-6 py-4 transition-all duration-500" id="buttonContainer">
+                <div class="flex space-x-3">
+                    <!-- Back Button -->
+                    <button 
+                        id="backBtn"
+                        class="w-12 h-12 bg-goodwill-blue text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center hover:bg-goodwill-dark-blue"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Continue Button -->
+                    <button 
+                        id="continueBtn"
+                        class="flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue"
+                    >
+                        PROCEED TO E-SIGN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme management (same as other pages)
+        let currentTheme = 'default';
+        
+        const themes = {
+            default: {
+                body: 'bg-gray-50',
+                mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-200',
+                headerTitle: 'text-gray-800',
+                formContent: 'bg-white',
+                title1: 'text-gray-800',
+                brokeragePlanTitle: 'text-gray-800',
+                buttonContainer: 'bg-white border-gray-200',
+                selectedSegment: 'bg-goodwill-blue text-white',
+                unselectedSegment: 'bg-gray-200 text-gray-700',
+                selectedPlan: 'bg-goodwill-blue text-white',
+                unselectedPlan: 'bg-gray-200 text-gray-700',
+                selectedPlanCard: 'bg-goodwill-blue text-white',
+                unselectedPlanCard: 'bg-gray-200 text-gray-700'
+            },
+            night: {
+                body: 'bg-gray-900',
+                mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
+                mobileContainer: 'bg-gray-800 shadow-2xl',
+                header: 'bg-gray-800 border-gray-600',
+                headerTitle: 'text-gray-100',
+                formContent: 'bg-gray-800',
+                title1: 'text-gray-100',
+                brokeragePlanTitle: 'text-gray-100',
+                buttonContainer: 'bg-gray-800 border-gray-600',
+                selectedSegment: 'bg-purple-600 text-white',
+                unselectedSegment: 'bg-gray-700 text-gray-200',
+                selectedPlan: 'bg-purple-600 text-white',
+                unselectedPlan: 'bg-gray-700 text-gray-200',
+                selectedPlanCard: 'bg-purple-600 text-white',
+                unselectedPlanCard: 'bg-gray-700 text-gray-200'
+            },
+            white: {
+                body: 'bg-white',
+                mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
+                mobileContainer: 'bg-white',
+                header: 'bg-white border-gray-300',
+                headerTitle: 'text-gray-700',
+                formContent: 'bg-white',
+                title1: 'text-gray-700',
+                brokeragePlanTitle: 'text-gray-700',
+                buttonContainer: 'bg-white border-gray-300',
+                selectedSegment: 'bg-gray-600 text-white',
+                unselectedSegment: 'bg-gray-100 text-gray-600',
+                selectedPlan: 'bg-gray-600 text-white',
+                unselectedPlan: 'bg-gray-100 text-gray-600',
+                selectedPlanCard: 'bg-gray-600 text-white',
+                unselectedPlanCard: 'bg-gray-100 text-gray-600'
+            },
+            colorful: {
+                body: 'bg-gradient-to-br from-pink-100 to-purple-100',
+                mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
+                mobileContainer: 'bg-white',
+                header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                headerTitle: 'text-colorful-primary',
+                formContent: 'bg-gradient-to-b from-white to-purple-50',
+                title1: 'text-colorful-primary',
+                brokeragePlanTitle: 'text-colorful-primary',
+                buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+                selectedSegment: 'bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white',
+                unselectedSegment: 'bg-purple-100 text-purple-700',
+                selectedPlan: 'bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white',
+                unselectedPlan: 'bg-purple-100 text-purple-700',
+                selectedPlanCard: 'bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white',
+                unselectedPlanCard: 'bg-purple-100 text-purple-700'
+            }
+        };
+        
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            
+            // Apply theme classes
+            document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
+            document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
+            document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
+            document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
+            document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
+            document.getElementById('formContent').className = `${theme.formContent} px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500`;
+            document.getElementById('title1').className = `text-lg font-medium ${theme.title1} mb-2 transition-all duration-500`;
+            document.getElementById('brokeragePlanTitle').className = `text-lg font-medium ${theme.brokeragePlanTitle} mb-4 transition-all duration-500`;
+            document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
+            
+            // Update segment and plan styles
+            updateSegmentStyles();
+            updatePlanCardStyles();
+            updatePlanStyles();
+        }
+        
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const themeOrder = ['default', 'night', 'white', 'colorful'];
+            const currentIndex = themeOrder.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themeOrder.length;
+            currentTheme = themeOrder[nextIndex];
+            
+            applyTheme(currentTheme);
+            
+            // Show theme name briefly
+            const themeNames = {
+                'default': 'Default Mode',
+                'night': 'Night Mode',
+                'white': 'White Mode',
+                'colorful': 'Colorful Mode'
+            };
+            
+            // Create temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+            notification.textContent = themeNames[currentTheme];
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 1500);
+        });
+        
+        // Page load animation
+        window.addEventListener('load', function() {
+            const mobileContainer = document.getElementById('mobileContainer');
+            const progressBar1 = document.getElementById('progressBar1');
+            
+            setTimeout(() => {
+                mobileContainer.classList.remove('translate-y-full', 'opacity-0');
+                mobileContainer.classList.add('animate-slideUp');
+               
+               setTimeout(() => {
+                   document.body.classList.remove('overflow-hidden');
+                   
+                   // Animate progress bar to complete
+                   setTimeout(() => {
+                       progressBar1.classList.add('animate-progressSlideComplete');
+                   }, 200);
+                   
+                   animateFields();
+               }, 600);
+            }, 100);
+        });
+      
+        function animateFields() {
+            const fields = [
+                'titleSection',
+                'segmentsSection',
+                'brokeragePlanSection'
+            ];
+            
+            fields.forEach((fieldId, index) => {
+                setTimeout(() => {
+                    const field = document.getElementById(fieldId);
+                    field.classList.remove('opacity-0', 'translate-x-[-30px]');
+                    field.classList.add('animate-slideInLeft');
+                }, 100 + (index * 150));
+            });
+        }
+
+        // Form functionality
+        let selectedSegments = ['equity', 'fo']; // Default selections
+        let selectedPlan = 'traditional'; // Default plan
+        
+        const segments = {
+            equity: document.getElementById('equitySegment'),
+            fo: document.getElementById('foSegment'),
+            commodities: document.getElementById('commoditiesSegment')
+        };
+        
+        const planButtons = {
+            traditional: document.getElementById('traditionalBtn'),
+            discount: document.getElementById('discountBtn')
+        };
+        
+        const planCards = {
+            traditional: document.getElementById('traditionalPlanCard'),
+            discount: document.getElementById('discountPlanCard')
+        };
+        
+        const continueBtn = document.getElementById('continueBtn');
+        const backBtn = document.getElementById('backBtn');
+        
+        // Brokerage rates for different plans
+        const brokerageRates = {
+            traditional: {
+                equityIntraday: '0.5 %',
+                equityDelivery: '0.1 %',
+                equityFutures: '0.05%',
+                equityOptions: 'Rs 100 per lot',
+                mcxFutures: '0.06 %',
+                mcxOptions: 'Rs 100 per lot'
+            },
+            discount: {
+                equityIntraday: 'Rs 20 per order',
+                equityDelivery: 'Rs 0 per order',
+                equityFutures: 'Rs 20 per order',
+                equityOptions: 'Rs 20 per order',
+                mcxFutures: 'Rs 20 per order',
+                mcxOptions: 'Rs 20 per order'
+            }
+        };
+        
+        // Function to update segment styles based on current theme and selections
+        function updateSegmentStyles() {
+            const theme = themes[currentTheme];
+            
+            Object.keys(segments).forEach(segmentKey => {
+                const segment = segments[segmentKey];
+                const isSelected = selectedSegments.includes(segmentKey);
+                
+                if (isSelected) {
+                    segment.className = `w-full p-4 ${theme.selectedSegment} rounded-lg transition-all duration-300 cursor-pointer relative`;
+                    // Show checkmark for selected segments
+                    const checkmark = segment.querySelector('.w-8.h-8');
+                    if (checkmark) {
+                        checkmark.style.display = 'flex';
+                    }
+                } else {
+                    segment.className = `w-full p-4 ${theme.unselectedSegment} rounded-lg transition-all duration-300 cursor-pointer relative`;
+                    // Hide checkmark for unselected segments
+                    const checkmark = segment.querySelector('.w-8.h-8');
+                    if (checkmark) {
+                        checkmark.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Function to update plan card styles based on current theme and selections
+        function updatePlanCardStyles() {
+            const theme = themes[currentTheme];
+            
+            Object.keys(planCards).forEach(planKey => {
+                const card = planCards[planKey];
+                const checkmark = card.querySelector('.w-6.h-6');
+                
+                if (planKey === selectedPlan) {
+                    card.className = `flex-1 ${theme.selectedPlanCard} rounded-lg p-4 relative cursor-pointer transition-all duration-300`;
+                    // Show checkmark for selected plan
+                    if (checkmark) {
+                        checkmark.style.display = 'flex';
+                        checkmark.className = 'w-6 h-6 bg-green-500 rounded-full flex items-center justify-center';
+                    }
+                } else {
+                    card.className = `flex-1 ${theme.unselectedPlanCard} rounded-lg p-4 relative cursor-pointer transition-all duration-300`;
+                    // Hide checkmark for unselected plan
+                    if (checkmark) {
+                        checkmark.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Function to update plan styles based on current theme and selections
+        function updatePlanStyles() {
+            const theme = themes[currentTheme];
+            
+            Object.keys(planButtons).forEach(planKey => {
+                const button = planButtons[planKey];
+                if (planKey === selectedPlan) {
+                    button.className = `px-4 py-2 ${theme.selectedPlan} font-medium rounded-lg transition-all duration-300`;
+                } else {
+                    button.className = `px-4 py-2 ${theme.unselectedPlan} font-medium rounded-lg transition-all duration-300`;
+                }
+            });
+            
+            // Update continue button
+            if (currentTheme === 'night') {
+                continueBtn.className = 'flex-1 bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-purple-700';
+            } else if (currentTheme === 'colorful') {
+                continueBtn.className = 'flex-1 bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:from-colorful-secondary hover:to-colorful-primary';
+            } else if (currentTheme === 'white') {
+                continueBtn.className = 'flex-1 bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-gray-700';
+            } else {
+                continueBtn.className = 'flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue';
+            }
+        }
+        
+        // Function to update brokerage rates display
+        function updateBrokerageRates() {
+            const rates = brokerageRates[selectedPlan];
+            
+            document.getElementById('equityIntraday').textContent = rates.equityIntraday;
+            document.getElementById('equityDelivery').textContent = rates.equityDelivery;
+            document.getElementById('equityFutures').textContent = rates.equityFutures;
+            document.getElementById('equityOptions').textContent = rates.equityOptions;
+            document.getElementById('mcxFutures').textContent = rates.mcxFutures;
+            document.getElementById('mcxOptions').textContent = rates.mcxOptions;
+        }
+        
+        // Segment click event listeners
+        Object.keys(segments).forEach(segmentKey => {
+            segments[segmentKey].addEventListener('click', function() {
+                if (selectedSegments.includes(segmentKey)) {
+                    // Remove from selection (but keep at least one selected)
+                    if (selectedSegments.length > 1) {
+                        selectedSegments = selectedSegments.filter(s => s !== segmentKey);
+                    }
+                } else {
+                    // Add to selection
+                    selectedSegments.push(segmentKey);
+                }
+                updateSegmentStyles();
+            });
+        });
+        
+        // Plan card click event listeners
+        Object.keys(planCards).forEach(planKey => {
+            planCards[planKey].addEventListener('click', function() {
+                selectedPlan = planKey;
+                updatePlanCardStyles();
+                updatePlanStyles();
+                updateBrokerageRates();
+            });
+        });
+        
+        // Plan button event listeners
+        Object.keys(planButtons).forEach(planKey => {
+            planButtons[planKey].addEventListener('click', function() {
+                selectedPlan = planKey;
+                updatePlanCardStyles();
+                updatePlanStyles();
+                updateBrokerageRates();
+            });
+        });
+        
+        // Continue button click handler
+        continueBtn.addEventListener('click', function() {
+            const formData = {
+                selectedSegments: selectedSegments,
+                brokeragePlan: selectedPlan
+            };
+            
+            alert('Segments information submitted successfully!\n' + JSON.stringify(formData, null, 2));
+        });
+        
+        // Back button click handler
+        backBtn.addEventListener('click', function() {
+            window.location.href = 'bank-details.html';
+        });
+        
+        // Initialize styles and rates
+        setTimeout(() => {
+            updateSegmentStyles();
+            updatePlanCardStyles();
+            updatePlanStyles();
+            updateBrokerageRates();
+        }, 100);
+    </script>
+</body>
+</html>
