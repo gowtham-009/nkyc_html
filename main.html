@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>main</h1>
+    <button type="button" onclick="nkyclist()" class="w-full px-2 py-2 text-white bg-blue-500">submit</button>
+
+    <script src="script/encryptwaydata.js"></script>
+    <script>
+        // window.onload = function () {
+        //  localStorage.removeItem('userkey')
+        // }
+
+
+        const nkyclist = async () => {
+            const nkycdata = await serverdata()
+            if (nkycdata.payload.status == 'error') {
+                if (nkycdata.payload.code == '1004' || nkycdata.payload.code == '1002') {
+                    alert(nkycdata.payload.message)
+                    localStorage.removeItem('userkey')
+                  window.location.href='/'
+                    return
+                }
+            }
+            else {
+                const digiInfo = nkycdata?.payload?.metaData?.digi_info;
+                const digiadd = nkycdata?.payload?.metaData?.digi_info.aadhaarUID
+                const panInfo = nkycdata?.payload?.metaData?.kraPan?.APP_KRA_INFO;
+
+                if (panInfo) {
+                   
+                     window.location.href='/permanent-address.html'
+                }
+
+                else if (digiInfo.length === 0) {
+                     alert('digi')
+                    // window.location.href='/'
+                }
+                else if (digiadd) {
+                   
+                    window.location.href='/permanent-address.html'
+                }
+                else {
+                    alert('digi')
+                    // window.location.href='/'
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>
