@@ -2,528 +2,591 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parents - Goodwill</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        'goodwill-blue': '#2563eb',
-                        'goodwill-dark-blue': '#1d4ed8',
-                        'colorful-primary': '#ff6b6b',
-                        'colorful-secondary': '#4ecdc4',
-                        'colorful-accent': '#45b7d1',
-                        'colorful-gradient-start': '#667eea',
-                        'colorful-gradient-end': '#764ba2',
-                    },
-                    keyframes: {
-                        slideUp: {
-                            '0%': { transform: 'translateY(100%)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
-                        },
-                        slideInLeft: {
-                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' }
-                        },
-                        progressSlide: {
-                            '0%': { width: '0%' },
-                            '100%': { width: '100%' }
-                        },
-                        progressSlideComplete: {
-                            '0%': { width: '90%' },
-                            '100%': { width: '100%' }
-                        },
-                        pulse: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.5' }
-                        }
-                    },
-                    animation: {
-                        slideUp: 'slideUp 0.6s ease-out forwards',
-                        slideInLeft: 'slideInLeft 0.4s ease-out forwards',
-                        progressSlide: 'progressSlide 1.2s ease-out forwards',
-                        progressSlideComplete: 'progressSlideComplete 1.2s ease-out forwards',
-                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parents - Goodwill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .google-bouncing-loader {
+      display: flex;
+      justify-content: center;
+      margin: 40px auto;
+    }
+
+    .google-bouncing-loader div {
+      width: 18px;
+      height: 18px;
+      margin: 0 5px;
+      background-color: #4285F4;
+      border-radius: 50%;
+      animation: google-bounce 0.6s infinite alternate;
+    }
+
+    .google-bouncing-loader div:nth-child(1) {
+      background-color: #4285F4;
+      /* blue */
+    }
+
+    .google-bouncing-loader div:nth-child(2) {
+      background-color: #EA4335;
+      /* red */
+      animation-delay: 0.2s;
+    }
+
+    .google-bouncing-loader div:nth-child(3) {
+      background-color: #FBBC05;
+      /* yellow */
+      animation-delay: 0.4s;
+    }
+
+    .google-bouncing-loader div:nth-child(4) {
+      background-color: #34A853;
+      /* green */
+      animation-delay: 0.6s;
+    }
+
+    @keyframes google-bounce {
+      to {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+          },
+          colors: {
+            'goodwill-blue': '#2563eb',
+            'goodwill-dark-blue': '#1d4ed8',
+            'colorful-primary': '#ff6b6b',
+            'colorful-secondary': '#4ecdc4',
+            'colorful-accent': '#45b7d1',
+            'colorful-gradient-start': '#667eea',
+            'colorful-gradient-end': '#764ba2',
+          },
+          keyframes: {
+            slideUp: {
+              '0%': { transform: 'translateY(100%)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            },
+            slideInLeft: {
+              '0%': { transform: 'translateX(-30px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' }
+            },
+            progressSlide: {
+              '0%': { width: '0%' },
+              '100%': { width: '100%' }
+            },
+            progressSlideComplete: {
+              '0%': { width: '90%' },
+              '100%': { width: '100%' }
+            },
+            pulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' }
             }
+          },
+          animation: {
+            slideUp: 'slideUp 0.6s ease-out forwards',
+            slideInLeft: 'slideInLeft 0.4s ease-out forwards',
+            progressSlide: 'progressSlide 1.2s ease-out forwards',
+            progressSlideComplete: 'progressSlideComplete 1.2s ease-out forwards',
+            pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          }
         }
-    </script>
+      }
+    }
+  </script>
 </head>
 
 <body class="bg-gray-50 font-sans overflow-hidden transition-all duration-500" id="body">
-    <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500"
-        id="mainBg">
-        <!-- Mobile Container -->
-        <div id="mobileContainer"
-            class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
-            <!-- Header -->
-            <div class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500"
-                id="header">
-                <!-- Menu Icon -->
-                <button class="w-8 h-8 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+  <div class="min-h-screen bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue transition-all duration-500"
+    id="mainBg">
+    <!-- Mobile Container -->
+    <div id="mobileContainer"
+      class="max-w-md mx-auto bg-white min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500">
+      <!-- Header -->
+      <div
+        class="bg-white px-6 py-6 flex items-center justify-between border-b border-gray-200 transition-all duration-500"
+        id="header">
+        <!-- Menu Icon -->
+        <button class="w-8 h-8 flex items-center justify-center">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
 
-                <!-- Title -->
-                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Digilocker
-                </h1>
+        <!-- Title -->
+        <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Digilocker
+        </h1>
 
-                <!-- Settings Icon -->
-                <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                        </path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                </button>
+        <!-- Settings Icon -->
+        <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+          </svg>
+        </button>
+      </div>
+      <div id="content" class="w-full ">
+        <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
+          <div class="flex items-center space-x-2">
+            <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+            <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+            <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+            <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
+            <div class="flex-1 h-1 bg-blue-500 rounded-full relative overflow-hidden">
+              <div class="h-full bg-blue-500 rounded-full w-[90%]" id="progressBar1"></div>
             </div>
-
-            <!-- Progress Bar -->
-            <div class="px-6 py-4 bg-white transition-all duration-500" id="progressSection">
-                <div class="flex items-center space-x-2">
-                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
-                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
-                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
-                    <div class="flex-1 h-1 bg-blue-500 rounded-full transition-all duration-500"></div>
-                    <div class="flex-1 h-1 bg-blue-500 rounded-full relative overflow-hidden">
-                        <div class="h-full bg-blue-500 rounded-full w-[90%]" id="progressBar1"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Content -->
-            <div class="bg-white px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500"
-                id="formContent">
-                <div class="space-y-6">
-                  <P class="text-center">EKYC</P>
-                    
-
-                   
-                </div>
-            </div>
-
-            <!-- Fixed Bottom Buttons -->
-            <div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200 px-6 py-4 transition-all duration-500"
-                id="buttonContainer">
-                <div class="flex space-x-3">
-                    <!-- Back Button -->
-                    <button id="backBtn"
-                        class="w-12 h-12 bg-goodwill-blue text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center hover:bg-goodwill-dark-blue">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                    </button>
-
-                    <!-- Continue Button -->
-                    <button id="continueBtn"
-                        class="flex-1  bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 "
-                        >
-                        Next
-                    </button>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Form Content -->
+        <div id="content" class="bg-white  px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500"
+          id="formContent">
+          <div class="space-y-6">
+            <P class="text-center">EKYC</P>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- Progress Bar -->
+
+
+      <div id="loading" class="google-bouncing-loader hidden flex items-center justify-center min-h-[calc(100vh-200px)]">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Fixed Bottom Buttons -->
+      <div
+        class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200 px-6 py-4 transition-all duration-500"
+        id="buttonContainer">
+        <div class="flex space-x-3">
+          <!-- Back Button -->
+          <button id="backBtn"
+            class="w-12 h-12 bg-goodwill-blue text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center hover:bg-goodwill-dark-blue">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+              </path>
+            </svg>
+          </button>
+
+          <!-- Continue Button -->
+          <button id="continueBtn"
+            class="flex-1  bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 ">
+            Next
+          </button>
+        </div>
+      </div>
     </div>
-    <script src="script/encryptwaydata.js"></script>
-    <script>
-        // Theme management (same as other pages)
-
-       
-        let currentTheme = 'default';
-
-        const themes = {
-            default: {
-                body: 'bg-gray-50',
-                mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
-                mobileContainer: 'bg-white',
-                header: 'bg-white border-gray-200',
-                headerTitle: 'text-gray-800',
-                formContent: 'bg-white',
-                title1: 'text-gray-800',
-                subtitle: 'text-gray-600',
-                buttonContainer: 'bg-white border-gray-200',
-                inputs: 'bg-gray-50 text-gray-900 border-gray-300'
-            },
-            night: {
-                body: 'bg-gray-900',
-                mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
-                mobileContainer: 'bg-gray-800 shadow-2xl',
-                header: 'bg-gray-800 border-gray-600',
-                headerTitle: 'text-gray-100',
-                formContent: 'bg-gray-800',
-                title1: 'text-gray-100',
-                subtitle: 'text-gray-300',
-                buttonContainer: 'bg-gray-800 border-gray-600',
-                inputs: 'bg-gray-700 text-white border-gray-500'
-            },
-            white: {
-                body: 'bg-white',
-                mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
-                mobileContainer: 'bg-white',
-                header: 'bg-white border-gray-300',
-                headerTitle: 'text-gray-700',
-                formContent: 'bg-white',
-                title1: 'text-gray-700',
-                subtitle: 'text-gray-600',
-                buttonContainer: 'bg-white border-gray-300',
-                inputs: 'bg-white text-gray-800 border-gray-300'
-            },
-            colorful: {
-                body: 'bg-gradient-to-br from-pink-100 to-purple-100',
-                mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
-                mobileContainer: 'bg-white',
-                header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
-                headerTitle: 'text-colorful-primary',
-                formContent: 'bg-gradient-to-b from-white to-purple-50',
-                title1: 'text-colorful-primary',
-                subtitle: 'text-purple-600',
-                buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
-                inputs: 'bg-purple-50 text-purple-900 border-purple-300'
-            }
-        };
-
-        function applyTheme(themeName) {
-            const theme = themes[themeName];
-
-            // Apply theme classes
-            document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
-            document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
-            document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
-            document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
-            document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
-            document.getElementById('formContent').className = `${theme.formContent} px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500`;
-            document.getElementById('title1').className = `text-lg font-medium ${theme.title1} mb-2 transition-all duration-500`;
-            document.getElementById('subtitle').className = `${theme.subtitle} text-sm leading-relaxed transition-all duration-500`;
-            document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
-
-          
-        }
-
-        // Theme toggle functionality
-        document.getElementById('themeToggle').addEventListener('click', function () {
-            const themeOrder = ['default', 'night', 'white', 'colorful'];
-            const currentIndex = themeOrder.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themeOrder.length;
-            currentTheme = themeOrder[nextIndex];
-
-            applyTheme(currentTheme);
-
-            // Show theme name briefly
-            const themeNames = {
-                'default': 'Default Mode',
-                'night': 'Night Mode',
-                'white': 'White Mode',
-                'colorful': 'Colorful Mode'
-            };
-
-            // Create temporary notification
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
-            notification.textContent = themeNames[currentTheme];
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 1500);
-        });
-
-        // Page load animation
-        window.addEventListener('load', function () {
-            const mobileContainer = document.getElementById('mobileContainer');
-            const progressBar1 = document.getElementById('progressBar1');
-
-            setTimeout(() => {
-                mobileContainer.classList.remove('translate-y-full', 'opacity-0');
-                mobileContainer.classList.add('animate-slideUp');
-
-                setTimeout(() => {
-                    document.body.classList.remove('overflow-hidden');
-
-                    // Animate progress bar to complete
-                    setTimeout(() => {
-                        progressBar1.classList.add('animate-progressSlideComplete');
-                    }, 200);
-
-                 
-                }, 600);
-            }, 100);
-        });
-
-        // Form functionality
-
-      
-        const continueBtn = document.getElementById('continueBtn');
-        const backBtn = document.getElementById('backBtn');
+  </div>
+  <script src="script/encryptwaydata.js"></script>
+  <script>
+    // Theme management (same as other pages)
 
 
+    let currentTheme = 'default';
 
-         
-
-         const digilocker_create = async () => {
-    // Basic configuration
-    const apiurl = baseurl + 'digilocker';         
-    const userToken = localStorage.getItem('userkey'); 
-    const redirectUrl = 'https://nkyc-html.vercel.app/ekyc.html'; 
-
-    // Construct plain payload (no encryption)
-    const payload = {
-        payload: {
-            userToken: userToken,
-            digilockerAction: "createUrl",
-            redirecUrl: redirectUrl
-        }
+    const themes = {
+      default: {
+        body: 'bg-gray-50',
+        mainBg: 'bg-gradient-to-b from-goodwill-blue to-goodwill-dark-blue',
+        mobileContainer: 'bg-white',
+        header: 'bg-white border-gray-200',
+        headerTitle: 'text-gray-800',
+        formContent: 'bg-white',
+        title1: 'text-gray-800',
+        subtitle: 'text-gray-600',
+        buttonContainer: 'bg-white border-gray-200',
+        inputs: 'bg-gray-50 text-gray-900 border-gray-300'
+      },
+      night: {
+        body: 'bg-gray-900',
+        mainBg: 'bg-gradient-to-b from-gray-800 to-gray-900',
+        mobileContainer: 'bg-gray-800 shadow-2xl',
+        header: 'bg-gray-800 border-gray-600',
+        headerTitle: 'text-gray-100',
+        formContent: 'bg-gray-800',
+        title1: 'text-gray-100',
+        subtitle: 'text-gray-300',
+        buttonContainer: 'bg-gray-800 border-gray-600',
+        inputs: 'bg-gray-700 text-white border-gray-500'
+      },
+      white: {
+        body: 'bg-white',
+        mainBg: 'bg-gradient-to-b from-gray-100 to-gray-200',
+        mobileContainer: 'bg-white',
+        header: 'bg-white border-gray-300',
+        headerTitle: 'text-gray-700',
+        formContent: 'bg-white',
+        title1: 'text-gray-700',
+        subtitle: 'text-gray-600',
+        buttonContainer: 'bg-white border-gray-300',
+        inputs: 'bg-white text-gray-800 border-gray-300'
+      },
+      colorful: {
+        body: 'bg-gradient-to-br from-pink-100 to-purple-100',
+        mainBg: 'bg-gradient-to-b from-colorful-gradient-start to-colorful-gradient-end',
+        mobileContainer: 'bg-white',
+        header: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+        headerTitle: 'text-colorful-primary',
+        formContent: 'bg-gradient-to-b from-white to-purple-50',
+        title1: 'text-colorful-primary',
+        subtitle: 'text-purple-600',
+        buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
+        inputs: 'bg-purple-50 text-purple-900 border-purple-300'
+      }
     };
 
-    try {
+    function applyTheme(themeName) {
+      const theme = themes[themeName];
+
+      // Apply theme classes
+      document.getElementById('body').className = `${theme.body} font-sans overflow-hidden transition-all duration-500`;
+      document.getElementById('mainBg').className = `min-h-screen ${theme.mainBg} transition-all duration-500`;
+      document.getElementById('mobileContainer').className = `max-w-md mx-auto ${theme.mobileContainer} min-h-screen relative transform translate-y-full opacity-0 transition-all duration-500`;
+      document.getElementById('header').className = `${theme.header} px-6 py-6 flex items-center justify-between border-b transition-all duration-500`;
+      document.getElementById('headerTitle').className = `text-lg font-semibold ${theme.headerTitle} transition-all duration-500`;
+      document.getElementById('formContent').className = `${theme.formContent} px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500`;
+      document.getElementById('title1').className = `text-lg font-medium ${theme.title1} mb-2 transition-all duration-500`;
+      document.getElementById('subtitle').className = `${theme.subtitle} text-sm leading-relaxed transition-all duration-500`;
+      document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
+
+
+    }
+
+    // Theme toggle functionality
+    document.getElementById('themeToggle').addEventListener('click', function () {
+      const themeOrder = ['default', 'night', 'white', 'colorful'];
+      const currentIndex = themeOrder.indexOf(currentTheme);
+      const nextIndex = (currentIndex + 1) % themeOrder.length;
+      currentTheme = themeOrder[nextIndex];
+
+      applyTheme(currentTheme);
+
+      // Show theme name briefly
+      const themeNames = {
+        'default': 'Default Mode',
+        'night': 'Night Mode',
+        'white': 'White Mode',
+        'colorful': 'Colorful Mode'
+      };
+
+      // Create temporary notification
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all duration-300';
+      notification.textContent = themeNames[currentTheme];
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 1500);
+    });
+
+    // Page load animation
+    window.addEventListener('load', function () {
+      const mobileContainer = document.getElementById('mobileContainer');
+      const progressBar1 = document.getElementById('progressBar1');
+
+      setTimeout(() => {
+        mobileContainer.classList.remove('translate-y-full', 'opacity-0');
+        mobileContainer.classList.add('animate-slideUp');
+
+        setTimeout(() => {
+          document.body.classList.remove('overflow-hidden');
+
+          // Animate progress bar to complete
+          setTimeout(() => {
+            progressBar1.classList.add('animate-progressSlideComplete');
+          }, 200);
+
+
+        }, 600);
+      }, 100);
+    });
+
+    // Form functionality
+
+
+    const continueBtn = document.getElementById('continueBtn');
+    const backBtn = document.getElementById('backBtn');
+
+
+
+
+
+    const digilocker_create = async () => {
+      // Basic configuration
+      const apiurl = baseurl + 'digilocker';
+      const userToken = localStorage.getItem('userkey');
+      const redirectUrl = 'https://nkyc-html.vercel.app/ekyc.html';
+
+      // Construct plain payload (no encryption)
+      const payload = {
+        payload: {
+          userToken: userToken,
+          digilockerAction: "createUrl",
+          redirecUrl: redirectUrl
+        }
+      };
+
+      try {
         const response = await fetch(apiurl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': headers
-            },
-            body: JSON.stringify(payload)
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': headers
+          },
+          body: JSON.stringify(payload)
         });
-         console.log
+        console.log
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
 
         if (data?.payload?.status === 'ok') {
-            const url = data.payload.metaData?.url;
-            
-            if (url) {
-                window.location.href = url;
-            } else {
-                console.warn('No redirect URL found in response');
-            }
+          const url = data.payload.metaData?.url;
+
+          if (url) {
+            window.location.href = url;
+          } else {
+            console.warn('No redirect URL found in response');
+          }
         } else if (data?.payload?.status === 'error') {
-            if (data.payload.code === '1002' || data.payload.code === '1004') {
-                alert(data.payload.message || 'An error occurred');
-                localStorage.removeItem('userkey');
-                window.location.href = '/'; // Vanilla JS redirection
-            } else {
-                alert(data.payload.message || 'An unknown error occurred');
-            }
+          if (data.payload.code === '1002' || data.payload.code === '1004') {
+            alert(data.payload.message || 'An error occurred');
+            localStorage.removeItem('userkey');
+            window.location.href = '/'; // Vanilla JS redirection
+          } else {
+            alert(data.payload.message || 'An unknown error occurred');
+          }
         }
-    } catch (error) {
+      } catch (error) {
         console.error('Error:', error.message);
-    }
-};
+      }
+      finally{
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('content').classList.remove('hidden');
+      }
+    };
 
 
 
- window.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const requestId = params.get('requestId');
-//   console.log(requestId);
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const requestId = params.get('requestId');
+      //   console.log(requestId);
 
-  if (requestId) {
-    digilocker_request(requestId);
-  }
-});
-
-
-const digilocker_request = async (requestId) => {
-  // Replace these with your actual values
-  const apiurl = baseurl + 'digilocker'; // baseurl must be a plain JS string    
-  const userToken = localStorage.getItem('userkey'); //
-
-  // Extract requestId from URL query parameters
- 
-
-
-  if (!userToken || !requestId) {
-    alert('Missing user session or request ID.');
-    return;
-  }
-
-  // Construct plain payload (no encryption)
-  const payload = {
-    payload: {
-      userToken: userToken,
-      digilockerAction: "getDetails",
-      digilockerReqId: requestId
-    }
-  };
-
-  try {
-    const response = await fetch(apiurl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': headers
-      },
-      body: JSON.stringify(payload)
+      if (requestId) {
+        digilocker_request(requestId);
+        document.getElementById('loading').classList.remove('hidden');
+        document.getElementById('content').classList.add('hidden');
+      }
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
 
-    const data = await response.json();
+    const digilocker_request = async (requestId) => {
+      // Replace these with your actual values
+      const apiurl = baseurl + 'digilocker'; // baseurl must be a plain JS string    
+      const userToken = localStorage.getItem('userkey'); //
 
-    if (data?.payload?.status === 'ok') {
-      // Replace with your own implementation
-      digilocker_getfiles(data);
-    } else if (data?.payload?.status === 'error') {
-      if (data.payload.code === '1002' || data.payload.code === '1004') {
-        alert(data.payload.message || 'Session expired');
-        localStorage.removeItem('userkey');
-        window.location.href = '/';
-      } else {
-        alert(data.payload.message || 'Something went wrong.');
+      // Extract requestId from URL query parameters
+
+
+
+      if (!userToken || !requestId) {
+        alert('Missing user session or request ID.');
+        return;
       }
-    } else {
-      console.log('Unexpected response:', data);
-    }
 
-  } catch (error) {
-    console.error('Error:', error.message);
-    alert('Failed to fetch Digilocker details.');
-  }
-};
+      // Construct plain payload (no encryption)
+      const payload = {
+        payload: {
+          userToken: userToken,
+          digilockerAction: "getDetails",
+          digilockerReqId: requestId
+        }
+      };
 
-const digilocker_getfiles = async (requestData) => {
-  const apiurl = baseurl + 'digilocker'; // baseurl must be a plain string  
-
-  const files = requestData.payload?.metaData?.fileIds;
-  const requestId = requestData.payload?.metaData?.requestId;
-
-  if (!files || !requestId) {
-    console.warn('Missing file IDs or request ID.');
-    return;
-  }
-
-  // Create plain JSON payload
-  const payload = {
-    payload: {
-      userToken: localStorage.getItem('userkey'),
-      digilockerAction: "getFiles",
-      digilockerReqId: requestId,
-      filesIds: files
-    }
-  };
-
-  try {
-    const response = await fetch(apiurl, {        
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': headers
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (data?.payload?.status === 'ok') {
-      // Call another function after successful file retrieval
-      digilocker_getaadhardoc(requestId);
-    } else if (data?.payload?.status === 'error') {
-      if (data.payload.code === '1002' || data.payload.code === '1004') {
-        alert(data.payload.message || 'Session expired');
-        localStorage.removeItem('userkey');
-        window.location.href = '/';
-      } else {
-        alert(data.payload.message || 'An error occurred.');
-      }
-    }
-
-  } catch (error) {
-    console.error('Error:', error.message);
-    alert('Something went wrong while fetching files.');
-  }
-};
-
-
-const digilocker_getaadhardoc = async (requestId) => {
- 
-  const apiurl = baseurl + 'digilocker'; // `baseurl` must be a plain JS string  
-
-  // Construct plain JSON payload
-  const payload = {
-    payload: {
-      userToken: localStorage.getItem('userkey'),
-      digilockerAction: "createAadhaar",
-      digilockerReqId: requestId
-    }
-  };
-
-  try {
-    const response = await fetch(apiurl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': headers
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (data.payload?.status === 'ok') {
-      alert('hi')
-    window.location.href = 'https://nkyc-html.vercel.app/permanent-address.html'; // ✅ redirect to next page
-
-    } else if (data.payload?.status === 'error') {
-      if (data.payload.code === '1002' || data.payload.code === '1004') {
-        alert(data.payload.message || 'Session expired');
-        localStorage.removeItem('userkey');
-        window.location.href = '/';
-      } else {
-        alert(data.payload.message || 'An unknown error occurred');
-      }
-    }
-
-  } catch (error) {
-    console.error('Error:', error.message);
-    alert('Something went wrong while creating Aadhaar document.');
-  }
-};
-
-
-
-        // Continue button click handler
-        continueBtn.addEventListener('click', function () {
-            if (!continueBtn.disabled) {
-              digilocker_create()
-            }
+      try {
+        const response = await fetch(apiurl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': headers
+          },
+          body: JSON.stringify(payload)
         });
 
-        // Back button click handler
-        backBtn.addEventListener('click', function () {
-            window.location.href = 'main.html';
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data?.payload?.status === 'ok') {
+          // Replace with your own implementation
+          digilocker_getfiles(data);
+        } else if (data?.payload?.status === 'error') {
+          if (data.payload.code === '1002' || data.payload.code === '1004') {
+            alert(data.payload.message || 'Session expired');
+            localStorage.removeItem('userkey');
+            window.location.href = '/';
+          } else {
+           document.getElementById('loading').classList.add('hidden');
+            document.getElementById('content').classList.remove('hidden');
+            
+          }
+        } else {
+          console.log('Unexpected response:', data);
+        }
+
+      } catch (error) {
+        console.error('Error:', error.message);
+        alert('Failed to fetch Digilocker details.');
+      }
+    };
+
+    const digilocker_getfiles = async (requestData) => {
+      const apiurl = baseurl + 'digilocker'; // baseurl must be a plain string  
+
+      const files = requestData.payload?.metaData?.fileIds;
+      const requestId = requestData.payload?.metaData?.requestId;
+
+      if (!files || !requestId) {
+        console.warn('Missing file IDs or request ID.');
+        return;
+      }
+
+      // Create plain JSON payload
+      const payload = {
+        payload: {
+          userToken: localStorage.getItem('userkey'),
+          digilockerAction: "getFiles",
+          digilockerReqId: requestId,
+          filesIds: files
+        }
+      };
+
+      try {
+        const response = await fetch(apiurl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': headers
+          },
+          body: JSON.stringify(payload)
         });
-    </script>
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data?.payload?.status === 'ok') {
+          // Call another function after successful file retrieval
+          digilocker_getaadhardoc(requestId);
+        } else if (data?.payload?.status === 'error') {
+          if (data.payload.code === '1002' || data.payload.code === '1004') {
+            alert(data.payload.message || 'Session expired');
+            localStorage.removeItem('userkey');
+            window.location.href = '/';
+          } else {
+            alert(data.payload.message || 'An error occurred.');
+          }
+        }
+
+      } catch (error) {
+        console.error('Error:', error.message);
+        alert('Something went wrong while fetching files.');
+      }
+    };
+
+
+    const digilocker_getaadhardoc = async (requestId) => {
+
+      const apiurl = baseurl + 'digilocker'; // `baseurl` must be a plain JS string  
+
+      // Construct plain JSON payload
+      const payload = {
+        payload: {
+          userToken: localStorage.getItem('userkey'),
+          digilockerAction: "createAadhaar",
+          digilockerReqId: requestId
+        }
+      };
+
+      try {
+        const response = await fetch(apiurl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': headers
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.payload?.status === 'ok') {
+          alert('hi')
+          window.location.href = 'https://nkyc-html.vercel.app/permanent-address.html'; // ✅ redirect to next page
+
+        } else if (data.payload?.status === 'error') {
+          if (data.payload.code === '1002' || data.payload.code === '1004') {
+            alert(data.payload.message || 'Session expired');
+            localStorage.removeItem('userkey');
+            window.location.href = '/';
+          } else {
+            alert(data.payload.message || 'An unknown error occurred');
+          }
+        }
+
+      } catch (error) {
+        console.error('Error:', error.message);
+        alert('Something went wrong while creating Aadhaar document.');
+      }
+    };
+
+
+
+    // Continue button click handler
+    continueBtn.addEventListener('click', function () {
+      if (!continueBtn.disabled) {
+        digilocker_create()
+      }
+    });
+
+    // Back button click handler
+    backBtn.addEventListener('click', function () {
+      window.location.href = 'main.html';
+    });
+  </script>
 </body>
 
 </html>
