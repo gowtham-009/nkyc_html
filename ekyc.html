@@ -490,6 +490,7 @@ const digilocker_getaadhardoc = async (requestId) => {
     const data = await response.json();
 
     if (data.payload?.status === 'success') {
+      alert('hi')
     window.location.href = '/permanent-address.html'; // ✅ redirect to next page
 
     } else if (data.payload?.status === 'error') {
