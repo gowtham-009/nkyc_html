@@ -554,7 +554,7 @@
         const data = await response.json();
 
         if (data.payload?.status === 'ok') {
-          alert('hi')
+        
           window.location.href = 'https://nkyc-html.vercel.app/permanent-address.html'; // ✅ redirect to next page
 
         } else if (data.payload?.status === 'error') {
