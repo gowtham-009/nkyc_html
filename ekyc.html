@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Experience - Goodwill</title>
+    <title>Parents - Goodwill</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -78,8 +78,8 @@
                 </button>
 
                 <!-- Title -->
-                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Trading
-                    Experience</h1>
+                <h1 class="text-lg font-semibold text-gray-800 transition-all duration-500" id="headerTitle">Digilocker
+                </h1>
 
                 <!-- Settings Icon -->
                 <button id="themeToggle" class="w-8 h-8 flex items-center justify-center">
@@ -110,47 +110,10 @@
             <div class="bg-white px-6 py-8 pb-32 min-h-[calc(100vh-200px)] transition-all duration-500"
                 id="formContent">
                 <div class="space-y-6">
-                    <!-- Title Section -->
-                    <div id="titleSection" class="opacity-0 transform translate-x-[-30px]">
-                        <h2 class="text-lg font-medium text-gray-800 mb-2 transition-all duration-500" id="title1">
-                            Experience in Trading</h2>
-                        <p class="text-gray-600 text-sm leading-relaxed transition-all duration-500" id="subtitle">
-                            Provide your accurate address for smooth and seamless service.
-                        </p>
-                    </div>
+                  <P class="text-center">EKYC</P>
+                    
 
-                    <!-- Trading Experience Section -->
-                    <div id="tradingSection" class="opacity-0 transform translate-x-[-30px]">
-                        <div class="space-y-3">
-                            <!-- New to Trading Option -->
-                            <button id="newToTradingBtn"
-                                class="w-full py-3 px-4 bg-goodwill-blue text-white font-medium rounded-lg transition-all duration-300 hover:bg-goodwill-dark-blue"
-                                data-experience="new-to-trading">
-                                New to Trading
-                            </button>
-
-                            <!-- 1-2 years Option -->
-                            <button id="oneToTwoYearsBtn"
-                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-experience="1-2-years">
-                                1 - 2 years of experience
-                            </button>
-
-                            <!-- 2-5 years Option -->
-                            <button id="twoToFiveYearsBtn"
-                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-experience="2-5-years">
-                                2 - 5 years of experience
-                            </button>
-
-                            <!-- 5-10 years Option -->
-                            <button id="fiveToTenYearsBtn"
-                                class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-experience="5-10-years">
-                                5 - 10 years of experience
-                            </button>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
 
@@ -169,38 +132,19 @@
 
                     <!-- Continue Button -->
                     <button id="continueBtn"
-                        class="flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue">
-                        PROCEED TO E-SIGN
+                        class="flex-1  bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 "
+                        >
+                        Next
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="script/encryptwaydata.js"></script>
     <script>
         // Theme management (same as other pages)
-  let selectedExperience = null;
-        const profilesetinfo = async () => {
-            const mydata = await getServerData();
-            const statuscheck = mydata?.payload?.metaData?.personal?.tradingExperience;
-            if (statuscheck) {
-             const normalizedValue = statuscheck.trim().toLowerCase().replace(/\s+/g, '-');
-             if(experienceButtons[normalizedValue]){
-                selectedExperience = normalizedValue
-             }
-             else{
-                selectedExperience=''
-             }
-            }
-            else {
-                selectedExperience = ''
-            }
 
-        };
-
-        window.onload = async function () {
-            await profilesetinfo()
-        }
+       
         let currentTheme = 'default';
 
         const themes = {
@@ -214,8 +158,7 @@
                 title1: 'text-gray-800',
                 subtitle: 'text-gray-600',
                 buttonContainer: 'bg-white border-gray-200',
-                selectedButton: 'bg-goodwill-blue text-white hover:bg-goodwill-dark-blue',
-                unselectedButton: 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                inputs: 'bg-gray-50 text-gray-900 border-gray-300'
             },
             night: {
                 body: 'bg-gray-900',
@@ -227,8 +170,7 @@
                 title1: 'text-gray-100',
                 subtitle: 'text-gray-300',
                 buttonContainer: 'bg-gray-800 border-gray-600',
-                selectedButton: 'bg-purple-600 text-white hover:bg-purple-700',
-                unselectedButton: 'bg-gray-700 text-gray-200 hover:bg-gray-600'
+                inputs: 'bg-gray-700 text-white border-gray-500'
             },
             white: {
                 body: 'bg-white',
@@ -240,8 +182,7 @@
                 title1: 'text-gray-700',
                 subtitle: 'text-gray-600',
                 buttonContainer: 'bg-white border-gray-300',
-                selectedButton: 'bg-gray-600 text-white hover:bg-gray-700',
-                unselectedButton: 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                inputs: 'bg-white text-gray-800 border-gray-300'
             },
             colorful: {
                 body: 'bg-gradient-to-br from-pink-100 to-purple-100',
@@ -253,8 +194,7 @@
                 title1: 'text-colorful-primary',
                 subtitle: 'text-purple-600',
                 buttonContainer: 'bg-gradient-to-r from-white to-purple-50 border-purple-200',
-                selectedButton: 'bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white hover:from-colorful-secondary hover:to-colorful-primary',
-                unselectedButton: 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                inputs: 'bg-purple-50 text-purple-900 border-purple-300'
             }
         };
 
@@ -272,8 +212,7 @@
             document.getElementById('subtitle').className = `${theme.subtitle} text-sm leading-relaxed transition-all duration-500`;
             document.getElementById('buttonContainer').className = `fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md ${theme.buttonContainer} border-t px-6 py-4 transition-all duration-500`;
 
-            // Update button styles based on current selections
-            updateButtonStyles();
+          
         }
 
         // Theme toggle functionality
@@ -324,91 +263,264 @@
                         progressBar1.classList.add('animate-progressSlideComplete');
                     }, 200);
 
-                    animateFields();
+                 
                 }, 600);
             }, 100);
         });
 
-        function animateFields() {
-            const fields = [
-                'titleSection',
-                'tradingSection'
-            ];
-
-            fields.forEach((fieldId, index) => {
-                setTimeout(() => {
-                    const field = document.getElementById(fieldId);
-                    field.classList.remove('opacity-0', 'translate-x-[-30px]');
-                    field.classList.add('animate-slideInLeft');
-                }, 100 + (index * 150));
-            });
-        }
-
         // Form functionality
-       // Default selection
 
-        const experienceButtons = {
-            'new-to-trading': document.getElementById('newToTradingBtn'),
-            '1-2-years': document.getElementById('oneToTwoYearsBtn'),
-            '2-5-years': document.getElementById('twoToFiveYearsBtn'),
-            '5-10-years': document.getElementById('fiveToTenYearsBtn')
-        };
-
+      
         const continueBtn = document.getElementById('continueBtn');
         const backBtn = document.getElementById('backBtn');
 
-        // Function to update button styles based on current theme and selections
-        function updateButtonStyles() {
-            const theme = themes[currentTheme];
 
-            // Update experience buttons
-            Object.keys(experienceButtons).forEach(experience => {
-                const button = experienceButtons[experience];
-                if (experience === selectedExperience) {
-                    button.className = `w-full py-3 px-4 ${theme.selectedButton} font-medium rounded-lg transition-all duration-300`;
-                } else {
-                    button.className = `w-full py-3 px-4 ${theme.unselectedButton} font-medium rounded-lg transition-all duration-300`;
-                }
-            });
 
-            // Update continue button
-            if (currentTheme === 'night') {
-                continueBtn.className = 'flex-1 bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-purple-700';
-            } else if (currentTheme === 'colorful') {
-                continueBtn.className = 'flex-1 bg-gradient-to-r from-colorful-primary to-colorful-secondary text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:from-colorful-secondary hover:to-colorful-primary';
-            } else if (currentTheme === 'white') {
-                continueBtn.className = 'flex-1 bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-gray-700';
-            } else {
-                continueBtn.className = 'flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue';
-            }
+         
+
+         const digilocker_create = async () => {
+    // Basic configuration
+    const apiurl = baseurl + 'digilocker';         
+    const userToken = localStorage.getItem('userkey'); 
+    const redirectUrl = 'https://nkyc-html.vercel.app/ekyc.html'; 
+
+    // Construct plain payload (no encryption)
+    const payload = {
+        payload: {
+            userToken: userToken,
+            digilockerAction: "createUrl",
+            redirecUrl: redirectUrl
+        }
+    };
+
+    try {
+        const response = await fetch(apiurl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': headers
+            },
+            body: JSON.stringify(payload)
+        });
+         console.log
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        // Experience button event listeners
-        Object.keys(experienceButtons).forEach(experience => {
-            experienceButtons[experience].addEventListener('click', function () {
-                selectedExperience = experience;
-                updateButtonStyles();
-            });
-        });
+        const data = await response.json();
+
+        if (data?.payload?.status === 'ok') {
+            const url = data.payload.metaData?.url;
+            
+            if (url) {
+                window.location.href = url;
+            } else {
+                console.warn('No redirect URL found in response');
+            }
+        } else if (data?.payload?.status === 'error') {
+            if (data.payload.code === '1002' || data.payload.code === '1004') {
+                alert(data.payload.message || 'An error occurred');
+                localStorage.removeItem('userkey');
+                window.location.href = '/'; // Vanilla JS redirection
+            } else {
+                alert(data.payload.message || 'An unknown error occurred');
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+};
+
+
+
+ window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const requestId = params.get('requestId');
+//   console.log(requestId);
+
+  if (requestId) {
+    digilocker_request(requestId);
+  }
+});
+
+
+const digilocker_request = async (requestId) => {
+  // Replace these with your actual values
+  const apiurl = baseurl + 'digilocker'; // baseurl must be a plain JS string    
+  const userToken = localStorage.getItem('userkey'); //
+
+  // Extract requestId from URL query parameters
+ 
+
+
+  if (!userToken || !requestId) {
+    alert('Missing user session or request ID.');
+    return;
+  }
+
+  // Construct plain payload (no encryption)
+  const payload = {
+    payload: {
+      userToken: userToken,
+      digilockerAction: "getDetails",
+      digilockerReqId: requestId
+    }
+  };
+
+  try {
+    const response = await fetch(apiurl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': headers
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data?.payload?.status === 'ok') {
+      // Replace with your own implementation
+      digilocker_getfiles(data);
+    } else if (data?.payload?.status === 'error') {
+      if (data.payload.code === '1002' || data.payload.code === '1004') {
+        alert(data.payload.message || 'Session expired');
+        localStorage.removeItem('userkey');
+        window.location.href = '/';
+      } else {
+        alert(data.payload.message || 'Something went wrong.');
+      }
+    } else {
+      console.log('Unexpected response:', data);
+    }
+
+  } catch (error) {
+    console.error('Error:', error.message);
+    alert('Failed to fetch Digilocker details.');
+  }
+};
+
+const digilocker_getfiles = async (requestData) => {
+  const apiurl = baseurl + 'digilocker'; // baseurl must be a plain string  
+
+  const files = requestData.payload?.metaData?.fileIds;
+  const requestId = requestData.payload?.metaData?.requestId;
+
+  if (!files || !requestId) {
+    console.warn('Missing file IDs or request ID.');
+    return;
+  }
+
+  // Create plain JSON payload
+  const payload = {
+    payload: {
+      userToken: localStorage.getItem('userkey'),
+      digilockerAction: "getFiles",
+      digilockerReqId: requestId,
+      filesIds: files
+    }
+  };
+
+  try {
+    const response = await fetch(apiurl, {        
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': headers
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data?.payload?.status === 'ok') {
+      // Call another function after successful file retrieval
+      digilocker_getaadhardoc(requestId);
+    } else if (data?.payload?.status === 'error') {
+      if (data.payload.code === '1002' || data.payload.code === '1004') {
+        alert(data.payload.message || 'Session expired');
+        localStorage.removeItem('userkey');
+        window.location.href = '/';
+      } else {
+        alert(data.payload.message || 'An error occurred.');
+      }
+    }
+
+  } catch (error) {
+    console.error('Error:', error.message);
+    alert('Something went wrong while fetching files.');
+  }
+};
+
+
+const digilocker_getaadhardoc = async (requestId) => {
+  const apiurl = baseurl + 'digilocker'; // `baseurl` must be a plain JS string  
+
+  // Construct plain JSON payload
+  const payload = {
+    payload: {
+      userToken: localStorage.getItem('userkey'),
+      digilockerAction: "createAadhaar",
+      digilockerReqId: requestId
+    }
+  };
+
+  try {
+    const response = await fetch(apiurl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': headers
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.payload?.status === 'success') {
+    window.location.href = '/permanent-address.html'; // ✅ redirect to next page
+
+    } else if (data.payload?.status === 'error') {
+      if (data.payload.code === '1002' || data.payload.code === '1004') {
+        alert(data.payload.message || 'Session expired');
+        localStorage.removeItem('userkey');
+        window.location.href = '/';
+      } else {
+        alert(data.payload.message || 'An unknown error occurred');
+      }
+    }
+
+  } catch (error) {
+    console.error('Error:', error.message);
+    alert('Something went wrong while creating Aadhaar document.');
+  }
+};
+
+
 
         // Continue button click handler
         continueBtn.addEventListener('click', function () {
-            const formData = {
-                tradingExperience: selectedExperience
-            };
-
-            alert('Trading experience information submitted successfully!\n' + JSON.stringify(formData, null, 2));
+            if (!continueBtn.disabled) {
+              digilocker_create()
+            }
         });
 
         // Back button click handler
         backBtn.addEventListener('click', function () {
-            window.location.href = 'education.html';
+            window.location.href = 'main.html';
         });
-
-        // Initialize button styles
-        setTimeout(() => {
-            updateButtonStyles();
-        }, 100);
     </script>
 </body>
 

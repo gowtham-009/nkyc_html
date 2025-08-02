@@ -136,20 +136,23 @@
                         class="hidden opacity-0 transform translate-x-[-30px] transition-all duration-300">
                         <h3 class="text-lg font-medium text-gray-800 mb-4 transition-all duration-500" id="otpTitle">
                             Enter 4-digit OTP</h3>
-                        <div class="flex justify-center space-x-4">
-                            <input id="otp1" type="text" maxlength="1"
-                                class="w-14 h-14 text-center text-xl font-bold border-2 border-blue-400 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
-                                inputmode="numeric" pattern="[0-9]*">
-                            <input id="otp2" type="text" maxlength="1"
-                                class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
-                                inputmode="numeric" pattern="[0-9]*">
-                            <input id="otp3" type="text" maxlength="1"
-                                class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
-                                inputmode="numeric" pattern="[0-9]*">
-                            <input id="otp4" type="text" maxlength="1"
-                                class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
-                                inputmode="numeric" pattern="[0-9]*">
-                        </div>
+                      <div class="flex justify-center space-x-4">
+        <input id="otp1" type="text" maxlength="1"
+            class="w-14 h-14 text-center text-xl font-bold border-2 border-blue-400 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
+            inputmode="numeric" pattern="[0-9]*">
+        <input id="otp2" type="text" maxlength="1"
+            class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
+            inputmode="numeric" pattern="[0-9]*">
+        <input id="otp3" type="text" maxlength="1"
+            class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
+            inputmode="numeric" pattern="[0-9]*">
+        <input id="otp4" type="text" maxlength="1"
+            class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
+            inputmode="numeric" pattern="[0-9]*">
+        <input id="otp5" type="text" maxlength="1"
+            class="w-14 h-14 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none bg-white text-gray-900 transition-colors duration-300"
+            inputmode="numeric" pattern="[0-9]*">
+    </div>
                         <!-- OTP Error Message -->
                         <div id="otpError"
                             class="hidden mt-4 text-sm text-red-600 flex items-center justify-center transition-all duration-500">
@@ -277,7 +280,7 @@
             emailInput.className = `w-full px-4 py-4 border rounded-lg focus:ring-1 focus:ring-blue-100 focus:border-blue-400 focus:outline-none ${theme.inputs} font-medium transition-colors duration-300`;
 
             // Apply styles to all OTP inputs
-            const otpInputs = ['otp1', 'otp2', 'otp3', 'otp4'];
+            const otpInputs = ['otp1', 'otp2', 'otp3', 'otp4', 'otp5'];
             otpInputs.forEach((id, index) => {
                 const input = document.getElementById(id);
                 if (input) {
@@ -364,6 +367,7 @@
         const otp2 = document.getElementById('otp2');
         const otp3 = document.getElementById('otp3');
         const otp4 = document.getElementById('otp4');
+        const otp5 = document.getElementById('otp5');
         const otpError = document.getElementById('otpError');
         const continueBtn = document.getElementById('continueBtn');
         const backBtn = document.getElementById('backBtn');
@@ -375,8 +379,8 @@
         // Email validation timer
         let emailValidationTimer = null;
 
-        // OTP validation pattern (4 digits)
-        const otpPattern = /^[0-9]{4}$/;
+        // OTP validation pattern (5 digits)
+        const otpPattern = /^[0-9]{5}$/;
 
         // Function to validate email
         function validateEmail(email) {
@@ -385,15 +389,14 @@
 
         // Function to validate OTP
         function validateOTP() {
-            const otpValue = otp1.value + otp2.value + otp3.value + otp4.value;
+            const otpValue = otp1.value + otp2.value + otp3.value + otp4.value + otp5.value;
             return otpPattern.test(otpValue);
         }
 
-        // Function to get complete OTP value
-        function getOTPValue() {
-            return otp1.value + otp2.value + otp3.value + otp4.value;
-        }
-
+    // Function to get complete OTP value
+function getOTPValue() {
+    return otp1.value + otp2.value + otp3.value + otp4.value + otp5.value;
+}
         // Function to show OTP section with animation
         function showOTPSection() {
             otpSection.classList.remove('hidden');
@@ -414,6 +417,7 @@
                 otp2.value = '';
                 otp3.value = '';
                 otp4.value = '';
+                otp5.value = '';
                 btnText.textContent = 'SEND OTP';
                 checkFormValidity();
             }, 300);
@@ -620,110 +624,109 @@ function validateEmail(email) {
     return emailPattern.test(email);
 }
 
-        // OTP input event listeners
-        function setupOTPInput(input, nextInput, prevInput) {
-            input.addEventListener('input', function (e) {
-                // Only allow numbers
-                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+      // OTP input event listeners
+function setupOTPInput(input, nextInput, prevInput) {
+    input.addEventListener('input', function (e) {
+        // Only allow numbers
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
 
-                // Move to next input if current is filled
-                if (e.target.value.length === 1 && nextInput) {
-                    nextInput.focus();
-                }
-
-                // Update styling and validation
-                updateOTPStyling();
-                checkFormValidity();
-            });
-
-            input.addEventListener('keydown', function (e) {
-                // Move to previous input on backspace if current is empty
-                if (e.key === 'Backspace' && e.target.value === '' && prevInput) {
-                    prevInput.focus();
-                }
-            });
-
-            input.addEventListener('paste', function (e) {
-                e.preventDefault();
-                const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 4);
-
-                // Fill the boxes with pasted data
-                if (pastedData.length > 0) {
-                    otp1.value = pastedData[0] || '';
-                    otp2.value = pastedData[1] || '';
-                    otp3.value = pastedData[2] || '';
-                    otp4.value = pastedData[3] || '';
-
-                    // Focus on the last filled box or next empty box
-                    if (pastedData.length === 4) {
-                        otp4.focus();
-                    } else if (pastedData.length === 3) {
-                        otp4.focus();
-                    } else if (pastedData.length === 2) {
-                        otp3.focus();
-                    } else {
-                        otp2.focus();
-                    }
-
-                    updateOTPStyling();
-                    checkFormValidity();
-                }
-            });
+        // Move to next input if current is filled
+        if (e.target.value.length === 1 && nextInput) {
+            nextInput.focus();
         }
 
-        // Setup all OTP inputs
-        setupOTPInput(otp1, otp2, null);
-        setupOTPInput(otp2, otp3, otp1);
-        setupOTPInput(otp3, otp4, otp2);
-        setupOTPInput(otp4, null, otp3);
+        // Update styling and validation
+        updateOTPStyling();
+        checkFormValidity();
+    });
 
-        // Function to update OTP styling
-        function updateOTPStyling() {
-            const otpInputs = [otp1, otp2, otp3, otp4];
-            const isValid = validateOTP();
-            const otpValue = getOTPValue();
+    input.addEventListener('keydown', function (e) {
+        // Move to previous input on backspace if current is empty
+        if (e.key === 'Backspace' && e.target.value === '' && prevInput) {
+            prevInput.focus();
+        }
+    });
 
-            // Show error only if all 4 digits are entered and invalid
-            if (otpValue.length === 4 && !isValid) {
-                showOTPError();
-            } else {
-                hideOTPError();
+    input.addEventListener('paste', function (e) {
+        e.preventDefault();
+        const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 5);
+
+        // Fill the boxes with pasted data
+        if (pastedData.length > 0) {
+            otp1.value = pastedData[0] || '';
+            otp2.value = pastedData[1] || '';
+            otp3.value = pastedData[2] || '';
+            otp4.value = pastedData[3] || '';
+            otp5.value = pastedData[4] || '';
+
+            // Find and focus the first empty or next input
+            if (!otp1.value) {
+                otp1.focus();
+            } else if (!otp2.value) {
+                otp2.focus();
+            } else if (!otp3.value) {
+                otp3.focus();
+            } else if (!otp4.value) {
+                otp4.focus();
+            } else if (!otp5.value) {
+                otp5.focus();
             }
 
-            otpInputs.forEach(input => {
-                if (isValid) {
-                    // Add success styling
-                    input.classList.remove('border-gray-300', 'border-gray-500', 'border-blue-400');
-                    if (currentTheme === 'night') {
-                        input.classList.add('border-green-400', 'ring-1', 'ring-green-400');
-                    } else {
-                        input.classList.add('border-green-500', 'ring-1', 'ring-green-500');
-                    }
-                } else {
-                    // Remove success styling
-                    input.classList.remove('border-green-500', 'ring-1', 'ring-green-500', 'border-green-400', 'ring-green-400');
-                    if (input.value) {
-                        input.classList.add('border-blue-400');
-                        input.classList.remove('border-gray-300', 'border-gray-500');
-                    } else {
-                        input.classList.remove('border-blue-400');
-                        if (currentTheme === 'night') {
-                            input.classList.add('border-gray-500');
-                        } else {
-                            input.classList.add('border-gray-300');
-                        }
-                    }
-                }
-            });
+            updateOTPStyling();
+            checkFormValidity();
         }
+    });
+}
 
+// Setup all OTP inputs
+setupOTPInput(otp1, otp2, null);
+setupOTPInput(otp2, otp3, otp1);
+setupOTPInput(otp3, otp4, otp2);
+setupOTPInput(otp4, otp5, otp3);
+setupOTPInput(otp5, null, otp4);
+        // Function to update OTP styling
+        // Function to update OTP styling
+function updateOTPStyling() {
+    const otpInputs = [otp1, otp2, otp3, otp4, otp5];
+    const isValid = validateOTP();
+    const otpValue = getOTPValue();
+
+    // Show error only if all 5 digits are entered and invalid
+    if (otpValue.length === 5 && !isValid) {
+        showOTPError();
+    } else {
+        hideOTPError();
+    }
+
+    otpInputs.forEach(input => {
+        if (isValid) {
+            // Add success styling
+            input.classList.remove('border-gray-300', 'border-gray-500', 'border-blue-400');
+            if (currentTheme === 'night') {
+                input.classList.add('border-green-400', 'ring-1', 'ring-green-400');
+            } else {
+                input.classList.add('border-green-500', 'ring-1', 'ring-green-500');
+            }
+        } else {
+            // Remove success styling
+            input.classList.remove('border-green-500', 'ring-1', 'ring-green-500', 'border-green-400', 'ring-green-400');
+            if (input.value) {
+                input.classList.add('border-blue-400');
+                input.classList.remove('border-gray-300', 'border-gray-500');
+            } else {
+                input.classList.remove('border-blue-400');
+                if (currentTheme === 'night') {
+                    input.classList.add('border-gray-500');
+                } else {
+                    input.classList.add('border-gray-300');
+                }
+            }
+        }
+    });
+}
         const sendemailotp = async () => {
             const headertoken = headers
-
-
             const apiurl = baseurl + 'validateEmail'
-
-
             const user = await encryptiondata({
                 otpType: 'email',
                 email: document.getElementById('emailInput').value,
@@ -734,8 +737,6 @@ function validateEmail(email) {
 
             const payload = { payload: user };
             const jsonString = JSON.stringify(payload);
-
-
             try {
                 const response = await fetch(apiurl, {
                     method: 'POST',
@@ -847,12 +848,12 @@ function validateEmail(email) {
                     else if (data.payload.status == 'error' && data.payload.code == '1002') {
 
                         localStorage.removeItem('userkey')
-                        router.push('/')
+                        window.location.href='/'
 
                     }
                     else if (data.payload.status == 'error' && data.payload.code == '1004') {
                         localStorage.removeItem('userkey')
-                        router.push('/')
+                        window.location.href='/'
                     }
 
 

@@ -943,16 +943,15 @@ continueBtn.addEventListener('click', async function () {
                 const kradata = await kraaddresssubmission();
                 
                 if (kradata.payload.status == 'ok' && kradata.payload.metaData.loginStatus == 0) {
-                    // Show OTP field and request OTP
+                   
                     showOTPField();
-                    
-                    // Update button text to "Verify OTP"
+                 
                     continueBtn.textContent = 'Verify OTP';
-                    
-                    // Store user key for OTP verification
+                 
                     continueBtn.dataset.userKey = kradata.payload.metaData.userKey;
                     
                 } else if (kradata.payload.metaData.KYC_DATA.APP_KRA_INFO || kradata.payload.metaData.KYC_DATA.APP_ERROR_DESC) {
+                    alert('hi')
                     localStorage.setItem('userkey', kradata.payload.userKey);
                  
                      window.location.href = 'mobile.html';
@@ -962,7 +961,7 @@ continueBtn.addEventListener('click', async function () {
                 document.getElementById('p_error').innerText = pandata.payload.message;
             }
         } else {
-            // OTP verification stage
+          
             const otpValue = getOTPValue();
             
             if (!validateOTP()) {
@@ -981,7 +980,7 @@ continueBtn.addEventListener('click', async function () {
            
                  window.location.href = 'mobile.html';
             } else {
-                // Show OTP error
+               
                 showOTPError();
                 document.getElementById('otpError').textContent = otpResponse.payload.message || 'OTP verification failed';
             }

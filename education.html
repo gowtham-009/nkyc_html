@@ -132,28 +132,28 @@
                             <!-- Post Graduate Option -->
                             <button id="postGraduateBtn"
                                 class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-education="Post-Graduate">
+                                data-education="Post Graduate">
                                 Post Graduate
                             </button>
 
                             <!-- Professional Degree Option -->
                             <button id="professionalDegreeBtn"
                                 class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-education="Professional-Degree">
+                                data-education="Professional Degree">
                                 Professional Degree
                             </button>
 
                             <!-- High School Option -->
                             <button id="highSchoolBtn"
                                 class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-education="High-School">
+                                data-education="High School">
                                 High School
                             </button>
 
                             <!-- Under High School Option -->
                             <button id="underHighSchoolBtn"
                                 class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-education=" Under-High-School">
+                                data-education=" Under High School">
                                 Under High School
                             </button>
 
@@ -184,7 +184,7 @@
                     <!-- Continue Button -->
                     <button id="continueBtn"
                         class="flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue">
-                        PROCEED TO E-SIGN
+                       NEXT
                     </button>
                 </div>
             </div>
@@ -198,7 +198,7 @@
             const statuscheck = mydata?.payload?.metaData?.personal?.education;
 
             if (statuscheck) {
-                const normalizedValue = statuscheck.trim().toLowerCase().replace(/\s+/g, '-');
+                const normalizedValue = statuscheck;
                 if (educationButtons[normalizedValue]) {
                     selectedEducation = normalizedValue;
                 } else {
@@ -363,12 +363,12 @@
 
 
         const educationButtons = {
-            'graduate': document.getElementById('graduateBtn'),
-            'post-graduate': document.getElementById('postGraduateBtn'),
-            'professional-degree': document.getElementById('professionalDegreeBtn'),
-            'high-school': document.getElementById('highSchoolBtn'),
-            'under-high-school': document.getElementById('underHighSchoolBtn'),
-            'illiterate': document.getElementById('illiterateBtn')
+            'Graduate': document.getElementById('graduateBtn'),
+            'Post Graduate': document.getElementById('postGraduateBtn'),
+            'Professional Degree': document.getElementById('professionalDegreeBtn'),
+            'High School': document.getElementById('highSchoolBtn'),
+            'Under High School': document.getElementById('underHighSchoolBtn'),
+            'Illiterate': document.getElementById('illiterateBtn')
         };
 
 
@@ -441,14 +441,16 @@
                     const decryptedData = await response.json()
                     const data = await decryptedData;
                     if (data.payload.status == 'ok') {
-                        alert('success')
+                       
+                        window.location.href='/trading-experience.html'
+                      
                     }
 
                     else if (data.payload.status == 'error') {
                         if (data.payload.code == '1002' || data.payload.code == '1004') {
                             alert(data.payload.message);
                             localStorage.removeItem('userkey')
-                            Window.location.href='/'
+                            window.location.href='/'
                         }
 
                         else if (data.payload.status == 'error' && data.payload.errors.length > 0) {

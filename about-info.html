@@ -139,9 +139,10 @@
                             </button>
 
                             <!-- Transgender Option -->
+                            <!-- Other -->
                             <button id="transgenderBtn"
                                 class="w-full py-3 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-300 hover:bg-gray-300"
-                                data-gender="Other">
+                                data-gender="Transgender">
                                 Transgender
                             </button>
                         </div>
@@ -186,7 +187,7 @@
                     <!-- Continue Button -->
                     <button id="continueBtn"
                         class="flex-1 bg-goodwill-blue text-white font-semibold py-3 px-6 rounded-lg transition-all duration-500 cursor-pointer hover:bg-goodwill-dark-blue">
-                        PROCEED TO E-SIGN
+                       NEXT
                     </button>
                 </div>
             </div>
@@ -195,52 +196,52 @@
     <script src="script/encryptwaydata.js"></script>
     <script>
 
-        let selectedGender 
-         let selectedMarital
-const profilesetinfo = async () => {
-    try {
-        const mydata = await serverdata();
+        let selectedGender
+        let selectedMarital
+        const profilesetinfo = async () => {
+            try {
+                const mydata = await serverdata();
 
-        const kraPanData = mydata?.payload?.metaData?.kraPan;
-        const personalData = mydata?.payload?.metaData?.personal || {};
-        const digiInfo = mydata?.payload?.metaData?.digi_info;
-        const digiDocs = mydata?.payload?.metaData?.digi_docs;
+                const kraPanData = mydata?.payload?.metaData?.kraPan;
+                const personalData = mydata?.payload?.metaData?.personal || {};
+                const digiInfo = mydata?.payload?.metaData?.digi_info;
+                const digiDocs = mydata?.payload?.metaData?.digi_docs;
 
-        let gender = null;
-        let maritalStatus = null;
+                let gender = null;
+                let maritalStatus = null;
 
-        if ((!personalData || Object.keys(personalData).length === 0 || !personalData.gender)) {
-            if (kraPanData?.APP_KRA_INFO) {
-                gender = kraPanData?.APP_GEN === 'M' ? 'Male' :
-                         kraPanData?.APP_GEN === 'F' ? 'Female' : 'Other';
-                maritalStatus = kraPanData?.APP_MAR_STATUS === '01' ? 'married' :
-                                kraPanData?.APP_MAR_STATUS === '02' ? 'unmarried' : null;
-            } else if (digiInfo?.aadhaarUID && digiDocs?.aadhaarDocument) {
-                gender = digiInfo?.gender === 'MALE' ? 'Male' :
-                         digiInfo?.gender === 'FEMALE' ? 'Female' : 'Other';
-                maritalStatus = personalData?.maritalStatus;
+                if ((!personalData || Object.keys(personalData).length === 0 || !personalData.gender)) {
+                    if (kraPanData?.APP_KRA_INFO) {
+                        gender = kraPanData?.APP_GEN === 'M' ? 'Male' :
+                            kraPanData?.APP_GEN === 'F' ? 'Female' : 'Other';
+                        maritalStatus = kraPanData?.APP_MAR_STATUS === '01' ? 'married' :
+                            kraPanData?.APP_MAR_STATUS === '02' ? 'unmarried' : null;
+                    } else if (digiInfo?.aadhaarUID && digiDocs?.aadhaarDocument) {
+                        gender = digiInfo?.gender === 'MALE' ? 'Male' :
+                            digiInfo?.gender === 'FEMALE' ? 'Female' : 'Other';
+                        maritalStatus = personalData?.maritalStatus;
+                    }
+                } else {
+                    gender = personalData.gender;
+                    maritalStatus = personalData.maritalStatus;
+                }
+
+                // Normalize values for UI button mapping
+                if (gender) {
+                    selectedGender = gender.toLowerCase() === 'male' ? 'male' :
+                        gender.toLowerCase() === 'female' ? 'female' : 'transgender';
+                }
+
+                if (maritalStatus) {
+                    selectedMarital = maritalStatus.toLowerCase() === 'married' ? 'married' : 'unmarried';
+                }
+
+                updateButtonStyles();
+
+            } catch (error) {
+                console.error('Error processing profile info:', error);
             }
-        } else {
-            gender = personalData.gender;
-            maritalStatus = personalData.maritalStatus;
-        }
-
-        // Normalize values for UI button mapping
-        if (gender) {
-            selectedGender = gender.toLowerCase() === 'male' ? 'male' :
-                             gender.toLowerCase() === 'female' ? 'female' : 'transgender';
-        }
-
-        if (maritalStatus) {
-            selectedMarital = maritalStatus.toLowerCase() === 'married' ? 'married' : 'unmarried';
-        }
-
-        updateButtonStyles();
-
-    } catch (error) {
-        console.error('Error processing profile info:', error);
-    }
-};
+        };
 
 
 
@@ -366,7 +367,7 @@ const profilesetinfo = async () => {
         // Page load animation
         window.addEventListener('load', function () {
             const mobileContainer = document.getElementById('mobileContainer');
-            const progressBar1 = document.getElementById('progressBar1');
+           // const progressBar1 = document.getElementById('progressBar1');
 
             setTimeout(() => {
                 mobileContainer.classList.remove('translate-y-full', 'opacity-0');
@@ -377,7 +378,7 @@ const profilesetinfo = async () => {
 
                     // Animate progress bar from 90% to 100%
                     setTimeout(() => {
-                        progressBar1.classList.add('animate-progressSlideFrom90To100');
+                    //    progressBar1.classList.add('animate-progressSlideFrom90To100');
                     }, 200);
 
                     animateFields();
@@ -453,92 +454,93 @@ const profilesetinfo = async () => {
             }
         }
 
-     // Gender button event listeners
-Object.keys(genderButtons).forEach(gender => {
-    genderButtons[gender].addEventListener('click', function () {
-        selectedGender = gender;
-        updateButtonStyles();
-    });
-});
-
-// Marital status button event listeners
-Object.keys(maritalButtons).forEach(marital => {
-    maritalButtons[marital].addEventListener('click', function () {
-        selectedMarital = marital;
-        updateButtonStyles();
-    });
-});
-
-
-  const personalinfo = async () => {
-  const apiurl = baseurl + 'personal_info';
-  const user = await encryptiondata({
-    userToken: localStorage.getItem('userkey'),
-    pageCode: "clientinfo",
-    gender: selectedGender === 'transgender' ? 'Other' : selectedGender.charAt(0).toUpperCase() + selectedGender.slice(1),
-    maritalStatus: selectedMarital,
-    pep: 'NO'
-  });
-
-  const headertoken = headers;
-  const payload = { payload: user };
-
-  try {
-    const response = await fetch(apiurl, {
-      method: 'POST',
-      headers: {
-        'Authorization': headertoken,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const data = await response.json();
-
-    if (data?.payload?.status === 'ok') {
-      window.location.href='/parents.html'
-    }    
-
-     else if (data?.payload?.status === 'error') {
-      const code = data.payload.code;
-      const message = data.payload.message;
-    
-      if (code === '1002' || code === '1004') {
-        alert(message);
-        localStorage.removeItem('userkey');
-        Window.location.href='/'
-      } else if (code === 'F1002') {
-        
-        alert("Something went wrong.")
-        
-      } else if (Array.isArray(data.payload.errors)) {
-        data.payload.errors.forEach(err => {
-          if (err.field === 'gender' && !selectedgender.value) {
-          
-            alert( err.message)
-          }
-          if (err.field === 'maritalStatus' && !selected.value) {
-            alert( err.message)
-          }
-        
+        // Gender button event listeners
+        Object.keys(genderButtons).forEach(gender => {
+            genderButtons[gender].addEventListener('click', function () {
+                selectedGender = gender;
+                updateButtonStyles();
+            });
         });
-      } else {
-         alert( "An unknown error occurred.")
-      
-      }
-    
 
-      } 
+        // Marital status button event listeners
+        Object.keys(maritalButtons).forEach(marital => {
+            maritalButtons[marital].addEventListener('click', function () {
+                selectedMarital = marital;
+                updateButtonStyles();
+            });
+        });
 
-  } catch (error) {
-    console.error("Error occurred:", error.message);
-    alert("Unexpected error. Please try again.");
-  }
-};
+
+        const personalinfo = async () => {
+            const apiurl = baseurl + 'personal_info';
+            const user = await encryptiondata({
+                userToken: localStorage.getItem('userkey'),
+                pageCode: "clientinfo",
+                gender: selectedGender === 'Transgender' ? 'Other' : selectedGender.charAt(0).toUpperCase() + selectedGender.slice(1),
+                maritalStatus: selectedMarital,
+                pep: 'NO'
+            });
+
+            const headertoken = headers;
+            const payload = { payload: user };
+
+            try {
+                const response = await fetch(apiurl, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': headertoken,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const data = await response.json();
+
+                if (data?.payload?.status === 'ok') {
+                   window.location.href = '/parents.html'
+                  //alert(data.payload.message);
+                }
+
+                else if (data?.payload?.status === 'error') {
+                    const code = data.payload.code;
+                    const message = data.payload.message;
+
+                    if (code === '1002' || code === '1004') {
+                        alert(message);
+                        localStorage.removeItem('userkey');
+                        Window.location.href = '/'
+                    } else if (code === 'F1002') {
+
+                        alert("Something went wrong.")
+
+                    } else if (Array.isArray(data.payload.errors)) {
+                        data.payload.errors.forEach(err => {
+                            if (err.field === 'gender' && !selectedgender.value) {
+
+                                alert(err.message)
+                            }
+                            if (err.field === 'maritalStatus' && !selected.value) {
+                                alert(err.message)
+                            }
+
+                        });
+                    } else {
+                        alert("An unknown error occurred.")
+
+                    }
+
+
+                }
+
+            } catch (error) {
+                console.error("Error occurred:", error.message);
+                alert("Unexpected error. Please try again.");
+            }
+        };
 
         // Continue button click handler
         continueBtn.addEventListener('click', function () {
-           personalinfo()
+            personalinfo()
         });
 
         // Back button click handler
