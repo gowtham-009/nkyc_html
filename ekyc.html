@@ -462,7 +462,7 @@ const digilocker_getfiles = async (requestData) => {
 
 
 const digilocker_getaadhardoc = async (requestId) => {
-  alert('hi');
+ 
   const apiurl = baseurl + 'digilocker'; // `baseurl` must be a plain JS string  
 
   // Construct plain JSON payload
@@ -490,9 +490,9 @@ const digilocker_getaadhardoc = async (requestId) => {
 
     const data = await response.json();
 
-    if (data.payload?.status === 'success') {
+    if (data.payload?.status === 'ok') {
       alert('hi')
-    window.location.href = '/permanent-address.html'; // ✅ redirect to next page
+    window.location.href = 'https://nkyc-html.vercel.app/permanent-address.html'; // ✅ redirect to next page
 
     } else if (data.payload?.status === 'error') {
       if (data.payload.code === '1002' || data.payload.code === '1004') {
